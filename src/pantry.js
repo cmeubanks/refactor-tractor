@@ -4,7 +4,12 @@ class Pantry {
   }
 
   // METHODS:
-  // viewAllIngredients()
+  viewAllIngredients() {
+    this.contents.map(ingredient => ingredient.name);
+  }
+
+
+
   // return array of all this.contents
 
   // checkIngredients(recipe)
