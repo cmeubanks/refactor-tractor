@@ -5,8 +5,7 @@ import recipeData from './data/recipes';
 import ingredientData from './data/ingredients';
 import users from './data/users';
 
-import {getData} from './api';
-console.log(getData)
+import { getData } from './api';
 import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
