@@ -3,26 +3,30 @@ class Pantry {
     this.contents = userIngredients;
   }
 
-  // METHODS:
   viewAllIngredients() {
-    this.contents.map(ingredient => ingredient.name);
+    return this.contents.default.map(ingredient => ingredient.name);
+  }
+
+  checkIngredients(recipe) {
+    // Return a boolean for single recipe
+    // Return an array of strings with recipes that
+    // a user can cook
   }
 
 
+  checkStillNeeded() {
 
-  // return array of all this.contents
+  }
+  // If we can't cook a recipe, what do we still need?
 
-  // checkIngredients(recipe)
-  //
 
-  // checkStillNeeded(!checkIngredients)
-  //
+  cookMeal(checkIngredients) {
 
-  // cookMeal(checkIngredients)
-  //
-
+  }
+  // If we can cook a recipe, remove the item from the pantry
 
 
 }
 
-export default Pantry;
+module.exports = Pantry;
+// export default Pantry;
