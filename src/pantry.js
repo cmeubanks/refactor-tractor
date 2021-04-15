@@ -9,14 +9,8 @@ class Pantry {
     return this.contents.default.map(ingredient => ingredient.name);
   }
 
-  checkIngredients(recipe) {
-    return recipeData.default.find(currentRecipe => {
-      if (currentRecipe.name === recipe) {
-        return currentRecipe;
-      } else {
-        return "No recipe found";
-      }
-    });
+  findRecipe(recipe) {
+    return recipeData.default.find(currentRecipe => currentRecipe.name === recipe ? currentRecipe : "No recipe found");
   }
 
   checkStillNeeded() {

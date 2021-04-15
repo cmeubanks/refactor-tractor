@@ -23,7 +23,7 @@ describe('Pantry', function() {
   it.only('should be able to check ingredients in pantry', function() {
     let pantry = new Pantry(ingredientsData);
 
-    expect(pantry.checkIngredients('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal({
+    expect(pantry.findRecipe('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal({
       name: 'Loaded Chocolate Chip Pudding Cookie Cups',
       id: 595736,
       image: 'https://spoonacular.com/recipeImages/595736-556x370.jpg',
