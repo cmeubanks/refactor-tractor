@@ -1,3 +1,5 @@
+const recipeData = require('../src/data/recipes.js');
+
 class Pantry {
   constructor(userIngredients) {
     this.contents = userIngredients;
@@ -8,11 +10,14 @@ class Pantry {
   }
 
   checkIngredients(recipe) {
-    // Return a boolean for single recipe
-    // Return an array of strings with recipes that
-    // a user can cook
+    return recipeData.default.find(currentRecipe => {
+      if (currentRecipe.name === recipe) {
+        return currentRecipe;
+      } else {
+        return "No recipe found";
+      }
+    });
   }
-
 
   checkStillNeeded() {
 
