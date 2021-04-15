@@ -2,7 +2,7 @@ import './css/base.scss';
 import './css/styles.scss';
 
 import recipeData from './data/recipes';
-import ingredientData from './data/ingredients';
+import ingredientsData from './data/ingredients';
 import users from './data/users';
 
 import { getData } from './api';
@@ -33,6 +33,7 @@ function onStartup() {
   pantry = new Pantry(newUser.pantry)
   populateCards(cookbook.recipes);
   greetUser();
+  getData();
 }
 
 function viewFavorites() {

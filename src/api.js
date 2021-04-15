@@ -1,28 +1,36 @@
-//export to script.JS file
-//JS will need to import
-
-// export
-const getData = () => {
+export const getData = () => {
   let userData = fetch('http://localhost:3001/api/v1/users')
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      return data
     })
-    .catch (error =>  "error")
+    .catch(error => {
+      return 'error'
+    })
 
   let ingredientsData = fetch('http://localhost:3001/api/v1/ingredients')
       .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log('error'))
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        return 'error'
+      })
 
   let recipeData = fetch('http://localhost:3001/api/v1/recipes')
       .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log('error'))
-  // return Promise.all([userData1])
-  // .then((values) => {
-  // console.log(values);
-  // });
-}
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        return 'error'
+      })
 
-getData();
+  Promise.all([userData, ingredientsData, recipeData])
+    .then(arrays => {
+      return arrays
+    })
+    .catch(err => {
+      return 'error'
+    })
+}
