@@ -9,12 +9,14 @@ class Pantry {
     return this.contents.default.map(ingredient => ingredient.name);
   }
 
-  findRecipe(recipe) {
-    return recipeData.default.find(currentRecipe => currentRecipe.name === recipe ? currentRecipe : "No recipe found");
+  findIngredients(recipe) {
+    let currRecipe = recipeData.default.find(currentRecipe => currentRecipe.name === recipe ? currentRecipe : "No recipe found");
+    return currRecipe.ingredients
   }
 
   checkStillNeeded() {
-
+    // let currRecipe = this.findRecipe(recipe);
+    // console.log(currRecipe.ingredients);
   }
   // If we can't cook a recipe, what do we still need?
 
