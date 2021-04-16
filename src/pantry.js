@@ -22,30 +22,30 @@ class Pantry {
     let pantryIng = this.viewAllIngredients();
 
     let checkIt = currRecipe.filter(ing => pantryIng.includes(ing) ? ing : null);
-
     return (checkIt.length === currRecipe.length) ? this.hasIngredients = true : his.hasIngredients = false;
   }
 
-  findMissingIng(recipe) {
-    // if canWeCook is false
+  cookRecipe(recipe) {
+    let currRecipe = this.findIngredients(recipe);
 
-    // console.log(pantryIng);
+    currRecipe.forEach(ing => {
+      let ingred = ing.name
+      let i = this.contents.indexOf(ingred);
+      this.contents.splice(i, 1);
+    })
+    return this.contents;
   }
-  // Input:
-  // Output: Array of objects needed with name (and maybe amount)
-  //
 
-  // cookMeal(recipe) {
-  // if canWeCook is true
-  //
-  // }
-  // If we can cook a recipe, remove the item from the pantry
+  showStillNeeded(recipe) {
+    let currRecipe = this.findIngredients(recipe).map(ing => ing.name);
+    let pantryIng = this.viewAllIngredients();
 
-  // if pantry === recipe
-  // splice any value (from pantry) who's index != -1 or just any
-  // matching value
-
-
+    return currRecipe.filter(ingObj => {
+        if(pantryIng.indexOf(ingObj) === -1) {
+          return ingObj;
+        }
+    })
+  }
 
 }
 
