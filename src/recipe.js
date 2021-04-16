@@ -2,10 +2,10 @@ class Recipe {
   constructor(recipe, ingredientsData) {
     this.name = recipe.name;
     this.id = recipe.id; //in use
-    this.ingredients = recipe.ingredients;
+    this.ingredients = recipe.ingredients; // in use
     this.instructions = recipe.instructions;
     this.tags = recipe.tags;
-    this.ingredientsData = ingredientsData;
+    this.ingredientsData = ingredientsData; // in use
   }
 
   getCookingInstructions(type) {
