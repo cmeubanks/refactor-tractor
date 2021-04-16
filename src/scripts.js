@@ -24,10 +24,6 @@ homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 
-  // function tags() {
-  // const newArray = []
-  // const test = cookbook.recipes.map(recipe => recipe.tags);
-  // }
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
