@@ -9,9 +9,7 @@ class Recipe {
   }
 
   getCookingInstructions(type) {
-    let recipe = new Cookbook(recipeData);
-    const steps = cooking.recipes.find(recipe => recipe.id === this.id)[type]
-    return steps
+    return this.type
   }
 
   calculateCost() {

@@ -115,18 +115,33 @@ describe('Recipe', () => {
     recipe = new Recipe(recipeData[0], ingredientsData);
   });
 
-    it('Should hold its own ingredient data', () => {
+  it('Should hold its own ingredient data', () => {
 
-      expect(recipe.ingredients).to.equal(recipeData[0].ingredients);
-    })
+    expect(recipe.ingredients).to.equal(recipeData[0].ingredients);
+  })
 
-    it('Should hold its own instruction data', () => {
+  it('Should hold its own instruction data', () => {
 
-      expect(recipe.instructions).to.equal(recipeData[0].instructions);
-    })
+    expect(recipe.instructions).to.equal(recipeData[0].instructions);
+  })
+
+  it('should be able to return the instructions of a specified recipe', () => {
+    const recipeInstructions = recipe.getCookingInstructions("instructions");
+
+    expect(recipeInstructions).to.deep.equal([
+      {
+        "number": 1,
+        "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy."
+      },
+      {
+        "number": 2,
+        "instruction": "Add egg and vanilla and mix until combined."
+      },
+      ])
+  })
 
   it('Should be able to calculate the cost of its ingredients', () => {
-    
+
     expect(recipe.calculateCost()).to.equal(504);
   });
 
