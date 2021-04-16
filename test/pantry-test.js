@@ -7,13 +7,13 @@ const recipeData = require('../src/data/recipes.js');
 
 describe('Pantry', function() {
 
-      it.only('should be an instance of Pantry class', function() {
+      it('should be an instance of Pantry class', function() {
         let pantry = new Pantry(ingredientsData);
 
         expect(pantry).to.be.an.instanceOf(Pantry);
       });
 
-      it.only('should be able to show all ingredients', function() {
+      it('should be able to show all ingredients', function() {
         let ingredientsData = [
           {"id": 20081, "name": "all purpose flour", "quantity": {"amount": 1.5, "unit": "c"}},
           {"id": 18372, "name": "baking soda", "quantity": {"amount": 0.5, "unit": "tsp"}},
@@ -33,7 +33,7 @@ describe('Pantry', function() {
         expect(ingredients[0]).deep.equal('all purpose flour');
       });
 
-      it.only('should be able to find a recipe', function() {
+      it('should be able to find a recipe', function() {
         let pantry = new Pantry(ingredientsData);
 
         expect(pantry.findIngredients('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([
@@ -51,7 +51,7 @@ describe('Pantry', function() {
           ]);
       });
 
-      it.only('should be able to tell if we have all the ingredients we need for a recipe', function() {
+      it('should be able to tell if we have all the ingredients we need for a recipe', function() {
           let ingredientsData = [
             {"id": 20081, "name": "all purpose flour", "quantity": {"amount": 1.5, "unit": "c"}},
             {"id": 18372, "name": "baking soda", "quantity": {"amount": 0.5, "unit": "tsp"}},
@@ -70,7 +70,7 @@ describe('Pantry', function() {
           expect(pantry.canWeCook('Loaded Chocolate Chip Pudding Cookie Cups')).to.equal(this.hasIngredients = true);
       });
 
-      it.only('should be able to remove all ingredients for recipe from pantry if we can cook a meal', function () {
+      it('should be able to remove all ingredients for recipe from pantry if we can cook a meal', function () {
         let ingredientsData = [
           {"id": 20081, "name": "all purpose flour", "quantity": {"amount": 1.5, "unit": "c"}},
           {"id": 18372, "name": "baking soda", "quantity": {"amount": 0.5, "unit": "tsp"}},
@@ -90,7 +90,7 @@ describe('Pantry', function() {
       })
 
 
-      it.only('should be able to tell what ingredients are missing for a recipe', function() {
+      it('should be able to tell what ingredients are missing for a recipe', function() {
         let ingredientsData = [
           {"id": 20081, "name": "all purpose flour", "quantity": {"amount": 1.5, "unit": "c"}},
           {"id": 18372, "name": "baking soda", "quantity": {"amount": 0.5, "unit": "tsp"}},

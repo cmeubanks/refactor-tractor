@@ -14,8 +14,6 @@ class Pantry {
     let currRecipe = recipeData.default.find(currentRecipe => currentRecipe.name === recipe ? currentRecipe : "No recipe found");
     return currRecipe.ingredients;
   }
-  // Input: recipe - "name"
-  // Output: array of objects - ingredients/amounts needed to cook
 
   canWeCook(recipe) {
     let currRecipe = this.findIngredients(recipe).map(ing => ing.name);
