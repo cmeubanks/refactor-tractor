@@ -3,6 +3,10 @@ class Cookbook {
     this.recipes = data;
   }
 
+  showAllRecipes() {
+    return this.recipes;
+  }
+
   findRecipe(searchText) {
     return this.recipes.filter(recipe => {
       return recipe.ingredients.find(ingredient => {

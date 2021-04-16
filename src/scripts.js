@@ -31,7 +31,7 @@ function onStartup() {
   });
   user = new User(userId, newUser.name, newUser.pantry)
   pantry = new Pantry(newUser.pantry)
-  populateCards(cookbook.recipes);
+  populateCards(cookbook.showAllRecipes());
   greetUser();
   getData();
 }
