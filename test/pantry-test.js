@@ -20,7 +20,7 @@ describe('Pantry', function() {
         expect(ingredients[0]).deep.equal('wheat flour');
       });
 
-      it.only('should be able to find a recipe', function() {
+      it.skip('should be able to find a recipe', function() {
         let pantry = new Pantry(ingredientsData);
 
         expect(pantry.findIngredients('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([
@@ -36,8 +36,102 @@ describe('Pantry', function() {
             {name: 'unsalted butter', id: 1145, quantity: {amount: 0.5, unit: 'c'}},
             {name: 'vanilla extract', id: 2050, quantity: {amount: 0.5, unit: 'tsp'}}
           ]);
+      });
 
-        it.skip('should be able to tell what ingredients are missing for a recipe', function() {
+      it.only('should be able to tell if we have all the ingredients we need for a recipe', function() {
+          let ingredientsDataEx = [{
+              "id": 20081,
+              "name": "all purpose flour",
+              "quantity": {
+                "amount": 1.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 18372,
+              "name": "baking soda",
+              "quantity": {
+                "amount": 0.5,
+                "unit": "tsp"
+              }
+            },
+            {
+              "id": 1123,
+              "name": "egg",
+              "quantity": {
+                "amount": 1,
+                "unit": "large"
+              }
+            },
+            {
+              "id": 19335,
+              "name": "granulated sugar",
+              "quantity": {
+                "amount": 0.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 19206,
+              "name": "instant vanilla pudding mix",
+              "quantity": {
+                "amount": 3,
+                "unit": "Tbsp"
+              }
+            },
+            {
+              "id": 19334,
+              "name": "light brown sugar",
+              "quantity": {
+                "amount": 0.5,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 2047,
+              "name": "salt",
+              "quantity": {
+                "amount": 0.5,
+                "unit": "tsp"
+              }
+            },
+            {
+              "id": 1012047,
+              "name": "sea salt",
+              "quantity": {
+                "amount": 24,
+                "unit": "servings"
+              }
+            },
+            {
+              "id": 10019903,
+              "name": "semisweet chocolate chips",
+              "quantity": {
+                "amount": 2,
+                "unit": "c"
+              }
+            },
+            {
+              "id": 1145,
+              "name": "unsalted butter",
+              "quantity": {
+                "amount": 0.5,
+                "unit": "c"
+              }
+            },
+            {"id": 2050,
+            "name": "vanilla extract",
+            "quantity": {
+              "amount": 0.5,
+              "unit": "tsp"
+            }
+          }];
+          let pantry = new Pantry(ingredientsDataEx);
+
+          expect(pantry.canWeCook('Loaded Chocolate Chip Pudding Cookie Cups')).to.equal(this.hasIngredients = true);
+      });
+
+      it.skip('should be able to tell what ingredients are missing for a recipe', function() {
           let ingredientsDataEx = [{
               "id": 20081,
               "name": "all purpose flour",
@@ -122,14 +216,9 @@ describe('Pantry', function() {
           ];
           let pantry = new Pantry(ingredientsDataEx);
 
-          expect(pantry.checkStillNeeded('Loaded Chocolate Chip Pudding Cookie Cups')).deep.equal([{
-            "id": 2050,
-            "name": "vanilla extract",
-            "quantity": {
-              "amount": 0.5,
-              "unit": "tsp"
-            }
+          expect(pantry.findMissingIng('Loaded Chocolate Chip Pudding Cookie Cups')).deep.equal(
+            [{"id": 2050, "name": "vanilla extract", "quantity": {"amount": 0.5, "unit": "tsp"}
           }]);
-       });
-    });
+      });
+
 });
