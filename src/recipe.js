@@ -1,7 +1,7 @@
 class Recipe {
   constructor(recipe, ingredientsData) {
     this.name = recipe.name;
-    this.id = recipe.id;
+    this.id = recipe.id; //in use
     this.ingredients = recipe.ingredients;
     this.instructions = recipe.instructions;
     this.tags = recipe.tags;
@@ -9,7 +9,9 @@ class Recipe {
   }
 
   getCookingInstructions(type) {
-
+    let recipe = new Cookbook(recipeData);
+    const steps = cooking.recipes.find(recipe => recipe.id === this.id)[type]
+    return steps
   }
 
   calculateCost() {
