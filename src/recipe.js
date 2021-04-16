@@ -8,6 +8,10 @@ class Recipe {
     this.ingredientsData = ingredientsData;
   }
 
+  getCookingInstructions(type) {
+
+  }
+
   calculateCost() {
     let costCounter = 0;
     this.ingredients.forEach(ingredient => {
