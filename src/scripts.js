@@ -16,14 +16,17 @@ import Cookbook from './cookbook';
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
+let searchButton = document.querySelector('.find')
 let cookbook = new Cookbook(recipeData);
 let user, pantry;
 
-window.onload = onStartup();
+// window.onload = onStartup();
+window.addEventListener('load', onStartup)
 
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
+searchButton.addEventListener('click', viewSearchMatches)
 
 
 function onStartup() {
@@ -70,12 +73,6 @@ function viewFavorites() {
   }
 }
 
-// function greetUser() {
-//   const userName = document.querySelector('.user-name');
-//   userName.innerHTML =
-//   user.name.split(' ')[0] + ' ' + user.name.split(' ')[1][0];
-// }
-
 function favoriteCard(event) {
   let specificRecipe = cookbook.recipes.find(recipe => {
     if (recipe.id  === Number(event.target.id)) {
@@ -114,4 +111,11 @@ function displayDirections(event) {
   let cost = recipeObject.calculateCost()
   let costInDollars = (cost / 100).toFixed(2)
   domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+}
+
+function viewSearchMatches() {
+  let searchInput = document.querySelector('#search-input')
+  let recipesFound = cookbook.findRecipe(searchInput.value)
+  domUpdates.populateCards(recipesFound, user);
+  event.preventDefault()
 }
