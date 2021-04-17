@@ -72,7 +72,7 @@ img {
 }
 
 .search-button {
-  background-color: #EBF5EE;
+  background-color: $card-active-background-color;
   border: $border-px-thin;
   @include dimensions(58px, 20%);
   margin-top: 3px;
@@ -115,7 +115,6 @@ img {
 
 .add {
   @include dimensions(auto, 100%);
-  // width: 100%;
 }
 
 .hidden {
