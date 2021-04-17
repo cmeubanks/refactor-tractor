@@ -80,21 +80,13 @@ let domUpdates = {
     pantryButton.innerHTML = 'Refresh Pantry'
     cardArea.innerHTML = '';
     pantry.contents.forEach(ingredient => {
-      cardArea.insertAdjacentHTML('afterbegin', `<div id='${ingredient.name}'
-      class='card'>
-      <header id='${ingredient.name}' class='card-header'>
-      <label for='add-button' class='hidden'>Click to add recipe</label>
+      // console.log(ingredient);
+      cardArea.insertAdjacentHTML('afterbegin',
+      `<div id='${ingredient.name}' class='card'>
+      <label for='add-button' class='hidden'>Click to add ingredient to grocery list</label>
       <button id='${ingredient.name}' aria-label='add-button' class='add-button card-button'>
-      <img id='${ingredient.name}' class='add'
-      src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
-      recipes to cook'></button>
-      <label for='favorite-button' class='hidden'>Click to favorite recipe
-      </label>
-      <button id='${ingredient.name}' aria-label='favorite-button' class='favorite favorite-active card-button'>
-      </button></header>
+      <img id='${ingredient.name}' class='add' src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to recipes to cook'></button>
       <span id='${ingredient.name}' class='recipe-name'>${ingredient.name}</span>
-      <img id='${ingredient.name}' tabindex='0' class='card-picture'
-      src='${ingredient.name}' alt='Food from recipe'>
       </div>`)
     })
   }
