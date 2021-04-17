@@ -4,7 +4,7 @@ class User {
     this.name = name;
     this.pantry = pantry;
     this.favoriteRecipes = [];
-
+    this.recipesToCook = [];
   }
 
   addToFavorites(recipe) {
@@ -32,6 +32,13 @@ class User {
       });
     });
   }
+
+  cookThisRecipe(recipe) {
+    if (!this.recipesToCook.includes(recipe)) {
+      this.recipesToCook.push(recipe);
+    }
+  }
+
 }
 
 
