@@ -1,24 +1,13 @@
 let domUpdates = {
-//onLoad
-// emptyArea(name) {
-//   document.querySelector(name).innerHTML = '';
-// }
-//
-// findProperty(htmlTag, cssTag) {
-//   document.querySelector(htmlTag).classList.contains(cssTag)
-// }
-//
-// removeProperty(htmlTag, cssTag) {
-//   document.querySelector(htmlTag).classList.remove(cssTag)
-// }
 
-populateCards(recipes, user) {
-  let cardArea = document.querySelector('.all-cards');
+  populateCards(recipes, user) {
+    let cardArea = document.querySelector('.all-cards');
 
     cardArea.innerHTML = '';
     if (cardArea.classList.contains('all')) {
       cardArea.classList.remove('all')
     }
+
     recipes.forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
@@ -39,7 +28,7 @@ populateCards(recipes, user) {
       </div>`)
     })
     this.getFavorites(user);
-},
+  },
 
   greetUser(user) {
     const userName = document.querySelector('.user-name');
@@ -53,11 +42,34 @@ populateCards(recipes, user) {
         document.querySelector(`.favorite${recipe.id}`).classList.add('favorite-active')
       })
     } else return
-  }
+  },
 
+  showRecipeNeeds(recipe,recipeCost) {
+    let cardArea = document.querySelector('.all-cards');
 
-
-
+    cardArea.classList.add('all');
+    cardArea.innerHTML = `<h3>${recipe.name}</h3>
+    <p class='all-recipe-info'>
+    <strong>It will cost: </strong><span class='cost recipe-info'>
+    $${recipeCost}</span><br><br>
+    <strong>You will need: </strong><span class='ingredients recipe-info'></span>
+    <strong>Instructions: </strong><ol><span class='instructions recipe-info'>
+    </span></ol>
+    </p>`;
+    let ingredientsSpan = document.querySelector('.ingredients');
+    let instructionsSpan = document.querySelector('.instructions');
+    recipe.ingredients.forEach(ingredient => {
+      ingredientsSpan.insertAdjacentHTML('afterbegin', `<ul><li>
+      ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}
+      ${ingredient.name}</li></ul>
+      `)
+    })
+    recipe.instructions.forEach(instruction => {
+      instructionsSpan.insertAdjacentHTML('beforebegin', `<li>
+      ${instruction.instruction}</li>
+      `)
+    })
+  },
 
 
 };
