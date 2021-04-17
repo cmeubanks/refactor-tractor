@@ -115,6 +115,7 @@ function displayDirections(event) {
 
 function viewSearchMatches() {
   let searchInput = document.querySelector('#search-input')
+  debugger
   let recipesFound = cookbook.findRecipe(searchInput.value)
   domUpdates.populateCards(recipesFound, user);
   event.preventDefault()
