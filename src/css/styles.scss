@@ -1,16 +1,10 @@
-// VARIABLE OPPORTUNITYS
-// color - cream : #EBF5EE;
-// width: 100%;
-// border: 2px solid #000;
-// border: 1px solid #000;
-// display: flex;
-//
-//
-//
+@import "variables";
+
 
 // does this actually do anything?
 html {
-  background-color: #37515C;
+  background-color: $marine;
+  // background-color: #37515C;
   border: 2px solid #000;
   height: 100vh;
 }
@@ -22,6 +16,7 @@ body {
 }
 
 main {
+  background-color: $marine;
   background-color: #37515C;
   height: 100%;
   width: 100%;
@@ -47,12 +42,20 @@ img {
 }
 
 .main-header {
-  background-color: #EBF5EE;
+  background-color : $main-header-color;
+  // background-color: #EBF5EE;
   border: 2px solid #000;
   display: flex;
   height: auto;
   justify-content: space-between;
   width: 100%;
+}
+
+.user-info {
+  font-size: 180%;
+  margin: auto;
+  text-align: center;
+  width: 40%;
 }
 
 .navButton {
@@ -63,14 +66,7 @@ img {
   margin: 1%;
 }
 
-
-.user-info {
-  font-size: 180%;
-  margin: auto;
-  text-align: center;
-  width: 40%;
-}
-
+ // does this go to anything?
 .search-bar {
   display: flex;
   height: 100%;
@@ -86,12 +82,12 @@ img {
   margin-top: 3px;
 }
 
-// should anything be done to this? <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// should anything be done to this? <<<<<<<<<<<<<<<
 .card-button:hover,
 .navButton:hover,
 .search-button:hover,
 .search-image:hover {
-  background-color: #cff2da;
+  background-color: #CFF2DA;
 }
 
 .card-button:active,
@@ -145,6 +141,7 @@ img {
   padding: 30px 0 30px 30px;
   width: 95.5vw;
 }
+
 
 
 .card {
