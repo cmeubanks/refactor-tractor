@@ -87,14 +87,14 @@ img {
 .navButton:hover,
 .search-button:hover,
 .search-image:hover {
-  background-color: #CFF2DA;
+  background-color: $card-hover-background-color;
 }
 
 .card-button:active,
 .navButton:active,
 .search-button:active,
 .search-image:active {
-  background-color: #C3C2C6;
+  background-color: $card-active-background-color;
 }
 
 .search-input {
