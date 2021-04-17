@@ -4,8 +4,7 @@
 // does this actually do anything?
 html {
   background-color: $main-background-color;
-  // background-color: #37515C;
-  border: 2px solid #000;
+  border: $border-px-thick;
   height: 100vh;
 }
 
@@ -17,13 +16,12 @@ body {
 
 main {
   background-color: $main-background-color;
-  background-color: #37515C;
   height: 100%;
   width: 100%;
 }
 
 h1 {
-  border-right: 2px solid #000;
+  border-right: $border-px-thick;
   font-size: 255%;
   margin-top: 0;
   margin-bottom: 0;
@@ -33,7 +31,7 @@ h1 {
 }
 
 h3 {
-  color: #EBF5EE;
+  color: $main-header-color;
   font-size: 250%;
 }
 
@@ -43,8 +41,7 @@ img {
 
 .main-header {
   background-color : $main-header-color;
-  // background-color: #EBF5EE;
-  border: 2px solid #000;
+  border: $border-px-thick;
   display: flex;
   height: auto;
   justify-content: space-between;
@@ -59,9 +56,9 @@ img {
 }
 
 .navButton {
-  background-color: #EBF5EE;
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
+  background-color: $main-header-color;
+  border-left: $border-px-thin;
+  border-right: $border-px-thin;
   font-size: 130%;
   margin: 1%;
 }
@@ -76,7 +73,7 @@ img {
 
 .search-button {
   background-color: #EBF5EE;
-  border: 1px solid #000;
+  border: $border-px-thin;
   width: 20%;
   height: 58px;
   margin-top: 3px;
@@ -98,7 +95,7 @@ img {
 }
 
 .search-input {
-  border: 1px solid #000;
+  border: $border-px-thin;
   font-size: 100%;
   height: 7vh;
   margin: 3px 7px 0 0;
@@ -107,13 +104,13 @@ img {
 }
 
 .card-button {
-  border: 1px solid #000;
+  border: $border-px-thin;
   height: 27px;
   margin: 3px;
 }
 
 .add-button {
-  background-color: #EBF5EE;
+  background-color: $main-header-color;
   display: flex;
   width: 12%;
 }
@@ -127,7 +124,7 @@ img {
 }
 
 .favorite {
-  background-color: #EBF5EE;
+  background-color: $main-header-color;
   background-image: url("https://image.flaticon.com/icons/svg/149/149222.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -151,8 +148,8 @@ img {
 }
 
 .card-header {
-  background-color: #EBF5EE;
-  border-bottom: 1px solid #000;
+  background-color: $main-header-color;
+  border-bottom: $border-px-thin;
   display: flex;
   justify-content: space-between;
 }
@@ -165,7 +162,7 @@ img {
 // is ol doing anything?
 .all-recipe-info,
 ol {
-  color: #EBF5EE;
+  color: $main-header-color;
   font-size: 220%;
   width: 100%;
 }
@@ -181,11 +178,11 @@ ol {
 }
 
 .card-picture:active {
-  border: 2px solid #000;
+  border: $border-px-thick;
 }
 
 .card-picture {
-  border: 1px solid #000;
+  border: $border-px-thin;
   height: 200px;
   margin: 10px 3% 8px 2.6%;
   width: 94%;
