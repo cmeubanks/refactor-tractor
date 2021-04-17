@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 
 // does this actually do anything?
@@ -16,8 +17,9 @@ body {
 
 main {
   background: $main-background-color;
-  height: 100%;
-  width: 100%;
+   @include dimensions(100%, 100%);
+  // height: 100%;
+  // width: 100%;
 }
 
 h1 {
@@ -43,9 +45,8 @@ img {
   background-color : $main-header-color;
   border: $border-px-thick;
   display: flex;
-  height: auto;
+  @include dimensions(auto, 100%);
   justify-content: space-between;
-  width: 100%;
 }
 
 .user-info {
@@ -66,16 +67,14 @@ img {
  // does this go to anything?
 .search-bar {
   display: flex;
-  height: 100%;
+  @include dimensions(100%, 30%);
   margin: 10px 0;
-  width: 30%;
 }
 
 .search-button {
   background-color: #EBF5EE;
   border: $border-px-thin;
-  width: 20%;
-  height: 58px;
+  @include dimensions(58px, 20%);
   margin-top: 3px;
 }
 
@@ -97,10 +96,9 @@ img {
 .search-input {
   border: $border-px-thin;
   font-size: 100%;
-  height: 7vh;
+  @include dimensions(7vh, 90%);
   margin: 3px 7px 0 0;
   padding-left: 10px;
-  width: 90%;
 }
 
 .card-button {
@@ -116,7 +114,8 @@ img {
 }
 
 .add {
-  width: 100%;
+  @include dimensions(auto, 100%);
+  // width: 100%;
 }
 
 .hidden {
@@ -183,9 +182,8 @@ ol {
 
 .card-picture {
   border: $border-px-thin;
-  height: 200px;
   margin: 10px 3% 8px 2.6%;
-  width: 94%;
+  @include dimensions(200px, 94%);
 }
 
 .favorite-active {
