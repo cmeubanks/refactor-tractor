@@ -4,6 +4,7 @@ class Pantry {
   constructor(userIngredients) {
     this.contents = userIngredients;
     this.hasIngredients = false;
+    this.groceryList = [];
   }
 
   viewAllIngredients() {
@@ -47,5 +48,5 @@ class Pantry {
 
 }
 
-module.exports = Pantry;
-// export default Pantry;
+// module.exports = Pantry;
+export default Pantry;
