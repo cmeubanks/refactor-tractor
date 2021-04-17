@@ -16,9 +16,11 @@ import Cookbook from './cookbook';
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
-let searchButton = document.querySelector('.find')
+let searchButton = document.querySelector('.find');
 let cookbook = new Cookbook(recipeData);
 let user, pantry;
+
+let pantryButton = document.querySelector('.view-pantry');
 
 // window.onload = onStartup();
 window.addEventListener('load', onStartup)
@@ -26,8 +28,9 @@ window.addEventListener('load', onStartup)
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
-searchButton.addEventListener('click', viewSearchMatches)
+searchButton.addEventListener('click', viewSearchMatches);
 
+pantryButton.addEventListener('click', showPantryView);
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
@@ -119,4 +122,11 @@ function viewSearchMatches() {
   let recipesFound = cookbook.findRecipe(searchInput.value)
   domUpdates.populateCards(recipesFound, user);
   event.preventDefault()
+}
+
+
+// PANTRY FUNCTIONS
+function showPantryView() {
+  let pantryIngredients = pantry.viewAllIngredients();
+  domUpdates.displayPantryView(pantryIngredients, pantry);
 }

@@ -8,7 +8,7 @@ class Pantry {
   }
 
   viewAllIngredients() {
-    return this.contents.map(ingredient => ingredient.name);
+    return this.contents;
   }
 
   findIngredients(recipe) {
@@ -44,6 +44,12 @@ class Pantry {
           return ingObj;
         }
     })
+  }
+
+  addIngToGroceryList(recipe) {
+    if (!this.groceryList.includes(recipe)) {
+      this.groceryList.push(recipe);
+    }
   }
 
 }
