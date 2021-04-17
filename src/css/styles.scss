@@ -3,7 +3,7 @@
 
 // does this actually do anything?
 html {
-  background-color: $marine;
+  background-color: $main-background-color;
   // background-color: #37515C;
   border: 2px solid #000;
   height: 100vh;
@@ -16,7 +16,7 @@ body {
 }
 
 main {
-  background-color: $marine;
+  background-color: $main-background-color;
   background-color: #37515C;
   height: 100%;
   width: 100%;
