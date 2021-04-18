@@ -5,7 +5,8 @@ import recipeData from './data/recipes';
 import ingredientsData from './data/ingredients';
 import users from './data/users';
 
-import { getData } from './api';
+// import {getData} from './api';
+import {getData} from './api';
 import domUpdates from './domUpdates';
 import Pantry from './pantry';
 import Recipe from './recipe';
@@ -19,7 +20,11 @@ let cardArea = document.querySelector('.all-cards');
 let searchButton = document.querySelector('.find')
 let cookbook = new Cookbook(recipeData);
 let user, pantry;
-
+let userArray = [];
+let recipeArray = [];
+console.log(recipeArray)
+let ingredientArray = [];
+// console.log(userArray)
 // window.onload = onStartup();
 window.addEventListener('load', onStartup)
 
@@ -28,8 +33,30 @@ favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches)
 
+// function convertFetchData() {
+// recipeArray = recipeArray.reduce((arr, recipe) => {
+// const values = Object.values(recipe)
+// values.forEach(item => {
+//   arr.push(item)
+// })
+// return arr
+// }, [])
+// }
 
 function onStartup() {
+  getData('users', userArray)
+  getData('recipes', recipeArray)
+  getData('ingredients', ingredientArray)
+
+  recipeArray = recipeArray.reduce((arr, recipe) => {
+  const values = Object.values(recipe)
+  values.forEach(item => {
+    arr.push(item)
+  })
+  return arr
+  }, [])
+
+
   let userId = (Math.floor(Math.random() * 49) + 1)
   let newUser = users.find(user => {
     return user.id === Number(userId);
@@ -38,7 +65,6 @@ function onStartup() {
   pantry = new Pantry(newUser.pantry)
   domUpdates.populateCards(cookbook.showAllRecipes(), user);
   domUpdates.greetUser(user);
-  getData();
 }
 
 function viewFavorites() {
