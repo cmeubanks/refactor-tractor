@@ -1,10 +1,3 @@
-// VARIABLE OPPORTUNITYS
-
-// width: 100%;
-// border: 2px solid #000;
-// border: 1px solid #000;
-
-
 // NEW COLOR PALLET
 // rose ebony #63474D
 // old rose #AA767C
@@ -12,16 +5,11 @@
 // light salmon #FFA686
 // macaroni and cheese #FEC196
 
+$main-header-color: #FEC196;
+$main-background-color: linear-gradient(0.25turn, #FFA686, #AA767C);
+$card-background-color: linear-gradient(0.25turn, #63474D, #AA767C);
+$card-hover-background-color: #FEC196;
+$card-active-background-color: #63474D;
 
 $border-px-thin: 1px solid #000;
 $border-px-thick: 2px solid #000;
-
-$main-header-color: #FEC196;
-
-$main-background-color: linear-gradient(0.25turn, #FFA686, #AA767C);
-
-$card-background-color: linear-gradient(0.25turn, #63474D, #AA767C);
-
-$card-hover-background-color: #FEC196;
-
-$card-active-background-color: #63474D;
