@@ -8,8 +8,8 @@ let domUpdates = {
       class='card'>
           <header id='${recipe.id}' class='card-header'>
             <label for='add-button' class='hidden'>Click to add recipe</label>
-            <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
-              <img id='${recipe.id} favorite' class='add add-button'
+            <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
+              <img id='${recipe.id} favorite' class='add add-recipe-button'
               src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
               recipes to cook'>
             </button>
@@ -89,13 +89,30 @@ let domUpdates = {
     pantry.contents.forEach(ingredient => {
       cardArea.innerHTML += `<div id='${ingredient.name}' class='card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>
-      <button id='${ingredient.name}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
+      <button id='addIngButton ${ingredient.name}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
       <img id='${ingredient.name}' class='add' src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add ingredient to grocery list'></button>
       <span id='${ingredient.name}' class='ingredient-name'>${ingredient.name}</span>
       </div>`
     })
   },
 
+  displayGroceryList(pantry) {
+    let groceryList = document.querySelector('.grocery-list');
+
+    if (user.favoriteRecipes.length) {
+      pantry.groceryList.forEach(ingredient => {
+        groceryList.insertAdjacentHTML('beforebegin', `<li>
+        ${ingredient.name}</li>
+        `)
+      })
+    }
+  },
+
+  //
+  //
+  // } else {
+  //   return;
+  // }
   // addRecipesToPantryView(user, pantry) {
   //   let canCookBox = document.querySelector('.can-cook');
   //   let canCookList = document.querySelector('.can-cook-list');

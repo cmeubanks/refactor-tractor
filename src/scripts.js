@@ -21,7 +21,8 @@ let cookbook = new Cookbook(recipeData);
 let user, pantry;
 
 let pantryButton = document.querySelector('.view-pantry');
-let addButton = document.querySelector('.add-button');
+let addRecipeButton = document.querySelector('.add-button');
+let addIngButton = document.getElementById('addIngButton')
 // let groceryList = document.querySelector('.grocery-list');
 
 // window.onload = onStartup();
@@ -33,6 +34,12 @@ cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 
 pantryButton.addEventListener('click', showPantryView);
+// addRecipeButton.addEventListener('click', );
+addIngButton.addEventListener('click', function(event){
+  console.log("It worked!!!!!!!!!");
+
+  addToGroceryList(event);
+});
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
@@ -62,8 +69,8 @@ function viewFavorites() {
       class='card'>
       <header id='${recipe.id}' class='card-header'>
       <label for='add-button' class='hidden'>Click to add recipe</label>
-      <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
-      <img id='${recipe.id}' class='add add-button'
+      <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
+      <img id='${recipe.id}' class='add add-recipe-button'
       src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
       recipes to cook'></button>
       <label for='favorite-button' class='hidden'>Click to favorite recipe
@@ -100,8 +107,20 @@ function addRecipeToCookList(event) {
       return recipe;
     }
   });
+  if (event.target.classList.contains('add-button')) {
+    user.addToCookList(specificRecipe);
+  }
+}
 
-  user.addToCookList(specificRecipe);
+
+function addToGroceryList(event) {
+  let specificIngredient = this.contents.find(ingredient => {
+    if (ingredient.id  === Number(event.target.id)) {
+      return ingredient;
+    }
+  });
+  pantry.addIngToGroceryList(specificIngredient);
+  domUpdates.displayGroceryList(pantry);
 }
 
 function cardButtonConditionals(event) {

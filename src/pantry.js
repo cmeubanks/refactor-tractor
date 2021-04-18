@@ -25,9 +25,9 @@ class Pantry {
     return (checkIt.length === currRecipe.length) ? true : false;
   }
 
-  findWhatWeCanCook(recipeList) {
-
-  }
+  // findWhatWeCanCook(recipeList) {
+  //
+  // }
 
   cookRecipe(recipe) {
     let currRecipe = this.findIngredients(recipe);
