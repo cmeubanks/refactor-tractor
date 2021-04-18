@@ -99,10 +99,10 @@ function addRecipeToCookList(event) {
     if (recipe.id  === Number(event.target.id)) {
       return recipe;
     }
-  })
-  if (event.target.classList.contains('add-button')) {
-    user.addToCookList(specificRecipe);
-  }
+  });
+
+  user.addToCookList(specificRecipe);
+  console.log(user.recipesToCook);
 }
 
 function cardButtonConditionals(event) {
@@ -168,4 +168,8 @@ function togglePantryBoxDisplay() {
   } else if (pantryButton.innerHTML === 'Refresh Pantry') {
     pantryButton.innerHTML = 'View Pantry';
   }
+}
+
+function addRecipesToPantryView() {
+  
 }
