@@ -20,10 +20,11 @@ let cardArea = document.querySelector('.all-cards');
 let searchButton = document.querySelector('.find')
 let cookbook = new Cookbook(recipeData);
 let user, pantry;
+
 let userArray = [];
-let recipeArray = [];
-console.log(recipeArray)
-let ingredientArray = [];
+// let recipeArray = [];
+// console.log(recipeArray)
+// let ingredientArray = [];
 // console.log(userArray)
 // window.onload = onStartup();
 window.addEventListener('load', onStartup)
@@ -33,6 +34,13 @@ favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches)
 
+getData(userArray)
+// .then(response => response.forEach(object => userArray.push(object)))
+
+
+console.log(userArray)
+// const userData = new Promise(getData('users'))
+// userArray.push(userData)
 // function convertFetchData() {
 // recipeArray = recipeArray.reduce((arr, recipe) => {
 // const values = Object.values(recipe)
@@ -44,17 +52,17 @@ searchButton.addEventListener('click', viewSearchMatches)
 // }
 
 function onStartup() {
-  getData('users', userArray)
-  getData('recipes', recipeArray)
-  getData('ingredients', ingredientArray)
+  // getData('users', userArray)
+  // getData('recipes', recipeArray)
+  // getData('ingredients', ingredientArray)
 
-  recipeArray = recipeArray.reduce((arr, recipe) => {
-  const values = Object.values(recipe)
-  values.forEach(item => {
-    arr.push(item)
-  })
-  return arr
-  }, [])
+  // recipeArray = recipeArray.reduce((arr, recipe) => {
+  // const values = Object.values(recipe)
+  // values.forEach(item => {
+  //   arr.push(item)
+  // })
+  // return arr
+  // }, [])
 
 
   let userId = (Math.floor(Math.random() * 49) + 1)
