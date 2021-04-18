@@ -69,34 +69,31 @@ let domUpdates = {
   displayPantryView(ingredients, pantry) {
     let pantryButton = document.querySelector('.view-pantry');
     let cardArea = document.querySelector('.all-cards');
-
-    // pantryButton.innerHTML = 'Refresh Pantry';
     cardArea.innerHTML = '';
 
-    cardArea.insertAdjacentHTML('beforebegin',
-      `<div id='recipesUserCanCook' class='card'>
+    cardArea.innerHTML += ('beforebegin',
+      `<div id='recipesUserCanCook' class='card can-cook pantry-box'>
       <span id='canCookTitle' class='recipe-name'>"RECIPES YOU CAN COOK NOW"</span>
       <ul></ul>
       </div>
-      <div id='recipesThatNeedIng' class='card'>
+      <div id='recipesThatNeedIng' class='card cant-cook pantry-box'>
       <span id='cantCookTitle' class='recipe-name'>"RECIPES YOU NEED TO SHOP FOR"</span>
       <ul></ul>
       </div>
-      <div id='groceryList' class='card'>
+      <div id='groceryList' class='card grocery-list pantry-box'>
       <span id='groceryListTitle' class='recipe-name'>"GROCERY LIST"</span>
       <ul></ul>
       </div>`)
 
     pantry.contents.forEach(ingredient => {
-      cardArea.insertAdjacentHTML('afterbegin',
-      `<div id='${ingredient.name}' class='card'>
+      cardArea.innerHTML += `<div id='${ingredient.name}' class='card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>
       <button id='${ingredient.name}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
       <img id='${ingredient.name}' class='add' src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add ingredient to grocery list'></button>
       <span id='${ingredient.name}' class='ingredient-name'>${ingredient.name}</span>
-      </div>`)
+      </div>`
     })
-  }
+  },
 
 };
 

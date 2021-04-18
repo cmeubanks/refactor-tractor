@@ -153,8 +153,9 @@ function showPantryView() {
   togglePantryBoxDisplay();
 
   if (cardArea.classList.contains('home')) {
-    cardArea.classList.remove('all')
-  }
+    cardArea.classList.remove('all');
+  };
+
   if (!pantry.contents.length) {
     pantryButton.innerHTML = 'You have an empty pantry!';
     domUpdates.populateCards(cookbook.recipes);
@@ -166,10 +167,9 @@ function showPantryView() {
 }
 
 function togglePantryBoxDisplay() {
-
-  // if(pantryButton.innerHTML.contains('View Pantry')) {
-  //   pantryButton.innerHTML = 'Refresh Pantry';
-  // } else if (pantryButton.contains('Refresh Pantry')) {
-  //   pantryButton.innerHTML = 'View Pantry';
-  // }
+  if(pantryButton.innerHTML === 'View Pantry') {
+    pantryButton.innerHTML = 'Refresh Pantry';
+  } else if (pantryButton.innerHTML === 'Refresh Pantry') {
+    pantryButton.innerHTML = 'View Pantry';
+  }
 }
