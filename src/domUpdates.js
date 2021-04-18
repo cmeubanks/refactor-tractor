@@ -9,7 +9,7 @@ let domUpdates = {
           <header id='${recipe.id}' class='card-header'>
             <label for='add-button' class='hidden'>Click to add recipe</label>
             <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
-              <img id='${recipe.id} favorite' class='add'
+              <img id='${recipe.id} favorite' class='add add-button'
               src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
               recipes to cook'>
             </button>

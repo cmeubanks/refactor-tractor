@@ -21,7 +21,7 @@ let cookbook = new Cookbook(recipeData);
 let user, pantry;
 
 let pantryButton = document.querySelector('.view-pantry');
-let pantryBoxes = document.querySelectorAll('.pantry-box');
+let addButton = document.querySelector('.add-button');
 
 // window.onload = onStartup();
 window.addEventListener('load', onStartup)
@@ -32,6 +32,7 @@ cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 
 pantryButton.addEventListener('click', showPantryView);
+// addButton.addEventListener('click', addRecipeToCookList);
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
@@ -62,7 +63,7 @@ function viewFavorites() {
       <header id='${recipe.id}' class='card-header'>
       <label for='add-button' class='hidden'>Click to add recipe</label>
       <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
-      <img id='${recipe.id}' class='add'
+      <img id='${recipe.id}' class='add add-button'
       src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
       recipes to cook'></button>
       <label for='favorite-button' class='hidden'>Click to favorite recipe
@@ -93,25 +94,22 @@ function favoriteCard(event) {
   }
 }
 
-function addRecipesToCook(event) {
+function addRecipeToCookList(event) {
   let specificRecipe = cookbook.recipes.find(recipe => {
     if (recipe.id  === Number(event.target.id)) {
       return recipe;
     }
   })
-
   if (event.target.classList.contains('add-button')) {
-    console.log('yay');
-    event.target.classList.remove('add-button');
-    pantryButton.innerHTML = 'View Pantry';
-    user.cookThisRecipe(specificRecipe);
-  } else if (!event.target.classList.contains('add-button')) {
-    event.target.classList.add('add-button');
-    user.removeFromCookList(specificRecipe);
+    user.addToCookList(specificRecipe);
   }
 }
 
 function cardButtonConditionals(event) {
+  if (event.target.classList.contains('add-button')) {
+    addRecipeToCookList(event);
+  };
+
   if (event.target.classList.contains('favorite')) {
     favoriteCard(event);
   } else if (event.target.classList.contains('card-picture')) {
@@ -120,8 +118,6 @@ function cardButtonConditionals(event) {
     favButton.innerHTML = 'View Favorites';
     pantryButton.innerHTML = 'View Pantry';
     domUpdates.populateCards(cookbook.recipes);
-  } else if (event.target.classList.contains('home')) {
-    addRecipesToCook(event);
   }
 }
 

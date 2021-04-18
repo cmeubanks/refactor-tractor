@@ -39,11 +39,6 @@ class User {
     }
   }
 
-  removeFromCookList(recipe) {
-    const i = this.recipesToCook.indexOf(recipe);
-    this.recipesToCook.splice(i, 1)
-  }
-
 }
 
 
