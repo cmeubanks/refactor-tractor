@@ -21,7 +21,8 @@ export function getData(userArray) {
 
   return fetch('http://localhost:3001/api/v1/users')
     .then(response => response.json())
-    .then(response => response.forEach(object => userArray.push(object)))
+    .then(response => response.map(object => object))
+    .then(array => userArray.push(array))
     // .then(data => {
     //   console.log(data.map(element => element))
     //   data.map(element => element)
