@@ -21,6 +21,7 @@ let cookbook = new Cookbook(recipeData);
 let user, pantry;
 
 let pantryButton = document.querySelector('.view-pantry');
+let pantryBoxes = document.querySelectorAll('.pantry-box');
 
 // window.onload = onStartup();
 window.addEventListener('load', onStartup)
@@ -92,6 +93,24 @@ function favoriteCard(event) {
   }
 }
 
+function addRecipesToCook(event) {
+  let specificRecipe = cookbook.recipes.find(recipe => {
+    if (recipe.id  === Number(event.target.id)) {
+      return recipe;
+    }
+  })
+
+  if (event.target.classList.contains('add-button')) {
+    console.log('yay');
+    event.target.classList.remove('add-button');
+    pantryButton.innerHTML = 'View Pantry';
+    user.cookThisRecipe(specificRecipe);
+  } else if (!event.target.classList.contains('add-button')) {
+    event.target.classList.add('add-button');
+    user.removeFromCookList(specificRecipe);
+  }
+}
+
 function cardButtonConditionals(event) {
   if (event.target.classList.contains('favorite')) {
     favoriteCard(event);
@@ -99,7 +118,10 @@ function cardButtonConditionals(event) {
     displayDirections(event);
   } else if (event.target.classList.contains('home')) {
     favButton.innerHTML = 'View Favorites';
+    pantryButton.innerHTML = 'View Pantry';
     domUpdates.populateCards(cookbook.recipes);
+  } else if (event.target.classList.contains('home')) {
+    addRecipesToCook(event);
   }
 }
 
@@ -128,5 +150,26 @@ function viewSearchMatches() {
 // PANTRY FUNCTIONS
 function showPantryView() {
   let pantryIngredients = pantry.viewAllIngredients();
-  domUpdates.displayPantryView(pantryIngredients, pantry);
+  togglePantryBoxDisplay();
+
+  if (cardArea.classList.contains('home')) {
+    cardArea.classList.remove('all')
+  }
+  if (!pantry.contents.length) {
+    pantryButton.innerHTML = 'You have an empty pantry!';
+    domUpdates.populateCards(cookbook.recipes);
+    return;
+  } else {
+    domUpdates.displayPantryView(pantryIngredients, pantry);
+    return;
+  }
+}
+
+function togglePantryBoxDisplay() {
+
+  // if(pantryButton.innerHTML.contains('View Pantry')) {
+  //   pantryButton.innerHTML = 'Refresh Pantry';
+  // } else if (pantryButton.contains('Refresh Pantry')) {
+  //   pantryButton.innerHTML = 'View Pantry';
+  // }
 }

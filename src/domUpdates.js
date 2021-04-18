@@ -3,11 +3,6 @@ let domUpdates = {
   populateCards(recipes, user) {
     let cardArea = document.querySelector('.all-cards');
 
-    cardArea.innerHTML = '';
-    if (cardArea.classList.contains('all')) {
-      cardArea.classList.remove('all')
-    }
-
     recipes.forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
@@ -75,25 +70,24 @@ let domUpdates = {
     let pantryButton = document.querySelector('.view-pantry');
     let cardArea = document.querySelector('.all-cards');
 
+    // pantryButton.innerHTML = 'Refresh Pantry';
     cardArea.innerHTML = '';
-    pantryButton.innerHTML = 'Refresh Pantry'
-
-    // COME BACK TO THIS => ADD ACTUAL RECIPES/ITERATOR HELPER FUNCTIONS
 
     cardArea.insertAdjacentHTML('beforebegin',
-    `<div id='recipesUserCanCook' class='card'>
-    <span id='canCookTitle' class='recipe-name'>"RECIPES YOU CAN COOK NOW"</span>
-    </div>
-    <div id='recipesThatNeedIng' class='card'>
-    <span id='cantCookTitle' class='recipe-name'>"RECIPES YOU NEED TO SHOP FOR"</span>
-    </div>
-    <div id='groceryList' class='card'>
-    <span id='groceryListTitle' class='recipe-name'>"GROCERY LIST"</span>
-    </div>`
-    )
+      `<div id='recipesUserCanCook' class='card'>
+      <span id='canCookTitle' class='recipe-name'>"RECIPES YOU CAN COOK NOW"</span>
+      <ul></ul>
+      </div>
+      <div id='recipesThatNeedIng' class='card'>
+      <span id='cantCookTitle' class='recipe-name'>"RECIPES YOU NEED TO SHOP FOR"</span>
+      <ul></ul>
+      </div>
+      <div id='groceryList' class='card'>
+      <span id='groceryListTitle' class='recipe-name'>"GROCERY LIST"</span>
+      <ul></ul>
+      </div>`)
 
     pantry.contents.forEach(ingredient => {
-      // console.log(ingredient);
       cardArea.insertAdjacentHTML('afterbegin',
       `<div id='${ingredient.name}' class='card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>

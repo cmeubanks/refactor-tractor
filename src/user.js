@@ -33,10 +33,15 @@ class User {
     });
   }
 
-  cookThisRecipe(recipe) {
+  addToCookList(recipe) {
     if (!this.recipesToCook.includes(recipe)) {
       this.recipesToCook.push(recipe);
     }
+  }
+
+  removeFromCookList(recipe) {
+    const i = this.recipesToCook.indexOf(recipe);
+    this.recipesToCook.splice(i, 1)
   }
 
 }
