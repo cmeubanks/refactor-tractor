@@ -22,6 +22,7 @@ let user, pantry;
 
 let pantryButton = document.querySelector('.view-pantry');
 let addButton = document.querySelector('.add-button');
+// let groceryList = document.querySelector('.grocery-list');
 
 // window.onload = onStartup();
 window.addEventListener('load', onStartup)
@@ -32,7 +33,6 @@ cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 
 pantryButton.addEventListener('click', showPantryView);
-// addButton.addEventListener('click', addRecipeToCookList);
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
@@ -102,7 +102,6 @@ function addRecipeToCookList(event) {
   });
 
   user.addToCookList(specificRecipe);
-  console.log(user.recipesToCook);
 }
 
 function cardButtonConditionals(event) {
@@ -146,7 +145,7 @@ function viewSearchMatches() {
 // PANTRY FUNCTIONS
 function showPantryView() {
   let pantryIngredients = pantry.viewAllIngredients();
-  togglePantryBoxDisplay();
+  togglePantryBoxDisplay(user, pantry);
 
   if (cardArea.classList.contains('home')) {
     cardArea.classList.remove('all');
@@ -157,7 +156,7 @@ function showPantryView() {
     domUpdates.populateCards(cookbook.recipes);
     return;
   } else {
-    domUpdates.displayPantryView(pantryIngredients, pantry);
+    domUpdates.displayPantryView(user, pantry);
     return;
   }
 }
@@ -168,8 +167,4 @@ function togglePantryBoxDisplay() {
   } else if (pantryButton.innerHTML === 'Refresh Pantry') {
     pantryButton.innerHTML = 'View Pantry';
   }
-}
-
-function addRecipesToPantryView() {
-  
 }

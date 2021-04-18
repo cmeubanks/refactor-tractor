@@ -3,12 +3,13 @@ const recipeData = require('../src/data/recipes.js');
 class Pantry {
   constructor(userIngredients) {
     this.contents = userIngredients;
-    this.hasIngredients = false;
     this.groceryList = [];
+    this.CanCookRecipes = [];
+    this.CanNotCookRecipes = [];
   }
 
   viewAllIngredients() {
-    return this.contents;
+    return this.contents.map(ingredient => ingredient.name);
   }
 
   findIngredients(recipe) {
@@ -21,7 +22,11 @@ class Pantry {
     let pantryIng = this.viewAllIngredients();
 
     let checkIt = currRecipe.filter(ing => pantryIng.includes(ing) ? ing : null);
-    return (checkIt.length === currRecipe.length) ? this.hasIngredients = true : his.hasIngredients = false;
+    return (checkIt.length === currRecipe.length) ? true : false;
+  }
+
+  findWhatWeCanCook(recipeList) {
+
   }
 
   cookRecipe(recipe) {
@@ -54,5 +59,5 @@ class Pantry {
 
 }
 
-// module.exports = Pantry;
-export default Pantry;
+module.exports = Pantry;
+// export default Pantry;

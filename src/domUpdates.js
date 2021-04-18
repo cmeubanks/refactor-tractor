@@ -66,23 +66,24 @@ let domUpdates = {
     })
   },
 
-  displayPantryView(ingredients, pantry) {
+  displayPantryView(user, pantry) {
     let pantryButton = document.querySelector('.view-pantry');
     let cardArea = document.querySelector('.all-cards');
+
     cardArea.innerHTML = '';
 
     cardArea.innerHTML += ('beforebegin',
       `<div id='recipesUserCanCook' class='card can-cook pantry-box'>
       <span id='canCookTitle' class='recipe-name'>"RECIPES YOU CAN COOK NOW"</span>
-      <ul></ul>
+      <ul class="can-cook-list"></ul>
       </div>
       <div id='recipesThatNeedIng' class='card cant-cook pantry-box'>
       <span id='cantCookTitle' class='recipe-name'>"RECIPES YOU NEED TO SHOP FOR"</span>
-      <ul></ul>
+      <ul class="cant-cook-list"></ul>
       </div>
-      <div id='groceryList' class='card grocery-list pantry-box'>
+      <div id='groceryList' class='card grocery-list-box pantry-box'>
       <span id='groceryListTitle' class='recipe-name'>"GROCERY LIST"</span>
-      <ul></ul>
+      <ul class="grocery-list"></ul>
       </div>`)
 
     pantry.contents.forEach(ingredient => {
@@ -94,6 +95,26 @@ let domUpdates = {
       </div>`
     })
   },
+
+  // addRecipesToPantryView(user, pantry) {
+  //   let canCookBox = document.querySelector('.can-cook');
+  //   let canCookList = document.querySelector('.can-cook-list');
+  //   let canNotCookBox = document.querySelector('.cant-cook');
+  //   let cantCookList = document.querySelector('.cant-cook-list');
+  //
+  //    pantry.canWeCook(user.recipesToCook);
+
+  //   user.recipesToCook.forEach(rec => {
+  //     if(!this.hasIngredients) {
+  //         pantry.showStillNeeded(rec);
+  //         cantCookList.insertAdjacentHTML('afterbegin', `<li>${rec.name}</li>`);
+  //     }
+  //     } else {
+  //         pantry.cookRecipe(rec);
+  //         canCookList.insertAdjacentHTML('afterbegin', `<li>${rec.name}</li>`);
+  //     }
+  //   })
+  // }
 
 };
 
