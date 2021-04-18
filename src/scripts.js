@@ -34,11 +34,11 @@ favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches)
 
-getData(userArray)
+// getData(userArray)
+// .then(userArray => user = new User())
 // .then(response => response.forEach(object => userArray.push(object)))
 
 
-console.log(userArray)
 // const userData = new Promise(getData('users'))
 // userArray.push(userData)
 // function convertFetchData() {
@@ -52,24 +52,14 @@ console.log(userArray)
 // }
 
 function onStartup() {
-  // getData('users', userArray)
-  // getData('recipes', recipeArray)
-  // getData('ingredients', ingredientArray)
-
-  // recipeArray = recipeArray.reduce((arr, recipe) => {
-  // const values = Object.values(recipe)
-  // values.forEach(item => {
-  //   arr.push(item)
-  // })
-  // return arr
-  // }, [])
-
-
-  let userId = (Math.floor(Math.random() * 49) + 1)
-  let newUser = users.find(user => {
-    return user.id === Number(userId);
-  });
-  user = new User(userId, newUser.name, newUser.pantry)
+  getData(userArray)
+  .then(userArray => return {user = new User(userArray[0].id, userArray[0].name, userArray[0].pantry)})
+  console.log(user)
+  // let userId = (Math.floor(Math.random() * 49) + 1)
+  // let newUser = users.find(user => {
+  //   return user.id === Number(userId);
+  // });
+  // user = new User(userId, newUser.name, newUser.pantry)
   pantry = new Pantry(newUser.pantry)
   domUpdates.populateCards(cookbook.showAllRecipes(), user);
   domUpdates.greetUser(user);

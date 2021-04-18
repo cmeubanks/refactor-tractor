@@ -17,12 +17,11 @@
 
 
 
-export function getData(userArray) {
+export function getData(endpoint) {
 
-  return fetch('http://localhost:3001/api/v1/users')
+  return fetch(`http://localhost:3001/api/v1/${endpoint}`)
     .then(response => response.json())
-    .then(response => response.map(object => object))
-    .then(array => userArray.push(array))
+    // .then(array => userArray.push(array))
     // .then(data => {
     //   console.log(data.map(element => element))
     //   data.map(element => element)
