@@ -2,9 +2,9 @@ class User {
   constructor(id, name, pantry) {
     this.id = id;
     this.name = name;
-    this.pantry = pantry;
+    this.pantry = pantry; //removed .contents
     this.favoriteRecipes = [];
-
+    this.recipesToCook = [];
   }
 
   addToFavorites(recipe) {
@@ -32,6 +32,13 @@ class User {
       });
     });
   }
+
+  addToCookList(recipe) {
+    if (!this.recipesToCook.includes(recipe)) {
+      this.recipesToCook.push(recipe);
+    }
+  }
+
 }
 
 

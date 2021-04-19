@@ -20,16 +20,25 @@ let searchButton = document.querySelector('.find')
 
 let user, pantry, cookbook;
 
-let userArray
-let recipeArray
-let ingredientsArray
+let userArray;
+let recipeArray;
+let ingredientsArray;
+
+let pantryButton = document.querySelector('.view-pantry');
+let addRecipeButton = document.querySelector('.add-button');
+let addIngButton = document.querySelector('.add-ing-button');
+let ingCard = document.querySelector('.ing-card');
+// let groceryList = document.querySelector('.grocery-list');
 
 window.addEventListener('load', onStartup)
 
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
-searchButton.addEventListener('click', viewSearchMatches)
+searchButton.addEventListener('click', viewSearchMatches);
+
+pantryButton.addEventListener('click', showPantryView);
+// addRecipeButton.addEventListener('click', );
 
 function onStartup() {
   getData('users')
@@ -40,7 +49,7 @@ function onStartup() {
   return user.id === Number(userId)
   })
   user = new User(userId, newUser.name, newUser.pantry)
-  pantry = new Pantry(newUser.pantry)
+  pantry = new Pantry(user.pantry)
   domUpdates.greetUser(user);
   })
   getData('recipes')
@@ -67,8 +76,8 @@ function viewFavorites() {
       class='card'>
       <header id='${recipe.id}' class='card-header'>
       <label for='add-button' class='hidden'>Click to add recipe</label>
-      <button id='${recipe.id}' aria-label='add-button' class='add-button card-button'>
-      <img id='${recipe.id}' class='add'
+      <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
+      <img id='${recipe.id}' class='add add-recipe-button'
       src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
       recipes to cook'></button>
       <label for='favorite-button' class='hidden'>Click to favorite recipe
@@ -99,6 +108,27 @@ function favoriteCard(event) {
   }
 }
 
+function addRecipeToCookList(event, user) {
+  console.log("added recipe to list!")
+    let specificRecipe = cookbook.recipes.find(recipe => {
+      if (recipe.id  === Number(event.target.id)) {
+        return recipe;
+      }
+    });
+    user.addToCookList(specificRecipe);
+  }
+
+function addToGroceryList(event) {
+  console.log("added ingredient to list!")
+  let specificIngredient = this.contents.find(ingredient => {
+    if (ingredient.id  === Number(event.target.id)) {
+      return ingredient;
+    }
+  });
+  pantry.addIngToGroceryList(specificIngredient);
+  domUpdates.displayGroceryList(pantry);
+}
+
 function cardButtonConditionals(event) {
   if (event.target.classList.contains('favorite')) {
     favoriteCard(event);
@@ -106,10 +136,14 @@ function cardButtonConditionals(event) {
     displayDirections(event);
   } else if (event.target.classList.contains('home')) {
     favButton.innerHTML = 'View Favorites';
-    domUpdates.populateCards(cookbook.recipes);
+    pantryButton.innerHTML = 'View Pantry';
+    domUpdates.populateCards(cookbook.showAllRecipes(), user);
+  } else if (event.target.classList.contains('add-button')) {
+    addRecipeToCookList(event);
+  } else if (event.target.classList.contains('add-ing-button')) {
+    addToGroceryList(event);
   }
 }
-
 
 function displayDirections(event) {
 
@@ -134,4 +168,32 @@ function viewSearchMatches() {
   let recipesFound = cookbook.findRecipe(searchInput.value)
   domUpdates.populateCards(recipesFound, user);
   event.preventDefault()
+}
+
+
+// PANTRY FUNCTIONS
+function showPantryView() {
+  let pantryIngredients = pantry.viewAllIngredients();
+  togglePantryBoxDisplay(user, pantry);
+
+  if (cardArea.classList.contains('home')) {
+    cardArea.classList.remove('all');
+  }
+
+  if (!pantry.contents.length) {
+    pantryButton.innerHTML = 'You have an empty pantry!';
+    domUpdates.populateCards(cookbook.recipes);
+    return;
+  } else {
+    domUpdates.displayPantryView(user, pantry);
+    return;
+  }
+}
+
+function togglePantryBoxDisplay() {
+  if(pantryButton.innerHTML === 'View Pantry') {
+    pantryButton.innerHTML = 'Refresh Pantry';
+  } else if (pantryButton.innerHTML === 'Refresh Pantry') {
+    pantryButton.innerHTML = 'View Pantry';
+  }
 }
