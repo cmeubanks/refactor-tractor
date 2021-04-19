@@ -49,7 +49,8 @@ function onStartup() {
   return user.id === Number(userId)
   })
   user = new User(userId, newUser.name, newUser.pantry)
-  pantry = new Pantry(newUser.pantry)
+  pantry = new Pantry(user.pantry)
+    console.log("pantry class on load", pantry)
   domUpdates.greetUser(user);
   })
   getData('recipes')
@@ -137,7 +138,7 @@ function cardButtonConditionals(event) {
   } else if (event.target.classList.contains('home')) {
     favButton.innerHTML = 'View Favorites';
     pantryButton.innerHTML = 'View Pantry';
-    domUpdates.populateCards(cookbook.recipes);
+    domUpdates.populateCards(cookbook.showAllRecipes(), user);
   } else if (event.target.classList.contains('add-button')) {
     addRecipeToCookList(event);
   } else if (event.target.classList.contains('add-ing-button')) {
@@ -173,6 +174,7 @@ function viewSearchMatches() {
 
 // PANTRY FUNCTIONS
 function showPantryView() {
+  console.log(pantry)
   let pantryIngredients = pantry.viewAllIngredients();
   togglePantryBoxDisplay(user, pantry);
 

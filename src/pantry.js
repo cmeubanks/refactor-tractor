@@ -9,6 +9,7 @@ class Pantry {
   }
 
   viewAllIngredients() {
+    console.log(this.contents)
     return this.contents.map(ingredient => ingredient.name);
   }
 

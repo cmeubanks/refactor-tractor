@@ -37,6 +37,7 @@ let domUpdates = {
   },
 
   getFavorites(user) {
+    console.log(user.favoriteRecipes)
     if (user.favoriteRecipes.length) {
       user.favoriteRecipes.forEach(recipe => {
         document.querySelector(`.favorite${recipe.id}`).classList.add('favorite-active')
