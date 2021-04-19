@@ -108,23 +108,23 @@ function favoriteCard(event) {
   }
 }
 
-function addRecipeToCookList(event) {
-  let specificRecipe = cookbook.recipes.find(recipe => {
-    if (recipe.id  === Number(event.target.id)) {
-      return recipe;
-    }
-  });
-  user.addToCookList(specificRecipe);
-}
-
+function addRecipeToCookList(event, user) {
+  console.log("added recipe to list!")
+    let specificRecipe = cookbook.recipes.find(recipe => {
+      if (recipe.id  === Number(event.target.id)) {
+        return recipe;
+      }
+    });
+    user.addToCookList(specificRecipe);
+  }
 
 function addToGroceryList(event) {
+  console.log("added ingredient to list!")
   let specificIngredient = this.contents.find(ingredient => {
     if (ingredient.id  === Number(event.target.id)) {
       return ingredient;
     }
   });
-
   pantry.addIngToGroceryList(specificIngredient);
   domUpdates.displayGroceryList(pantry);
 }
@@ -139,12 +139,8 @@ function cardButtonConditionals(event) {
     pantryButton.innerHTML = 'View Pantry';
     domUpdates.populateCards(cookbook.recipes);
   } else if (event.target.classList.contains('add-button')) {
-    console.log("ADDED RECIPE!!!!!!!")
-
     addRecipeToCookList(event);
   } else if (event.target.classList.contains('add-ing-button')) {
-    console.log("ADDED INGREDIENT!!!!!!!")
-
     addToGroceryList(event);
   }
 }

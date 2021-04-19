@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 const Pantry = require('../src/pantry.js');
-const ingredientsData = require('../src/data/ingredients.js');
+// const ingredientsData = require('../src/data/ingredients.js');
 const recipeData = require('../src/data/recipes.js');
 
 describe('Pantry', function() {
@@ -52,7 +52,7 @@ describe('Pantry', function() {
       });
 
       it.only('should be able to tell if we have all the ingredients we need for a recipe', function() {
-          let ingredientsData = [
+          let ingredientsDataEx = [
             {"id": 20081, "name": "all purpose flour", "quantity": {"amount": 1.5, "unit": "c"}},
             {"id": 18372, "name": "baking soda", "quantity": {"amount": 0.5, "unit": "tsp"}},
             {"id": 1123, "name": "egg", "quantity": {"amount": 1, "unit": "large"}},
@@ -65,7 +65,7 @@ describe('Pantry', function() {
             {"id": 1145, "name": "unsalted butter", "quantity": {"amount": 0.5, "unit": "c"}},
             {"id": 2050, "name": "vanilla extract", "quantity": {"amount": 0.5, "unit": "tsp"}}
           ];
-          let pantry = new Pantry(ingredientsData);
+          let pantry = new Pantry(ingredientsDataEx);
 
 
           let recipeList = [
@@ -152,7 +152,10 @@ describe('Pantry', function() {
           },
           ];
 
-          console.log(pantry.findWhatWeCanCook(recipeList));
+          // pantry.findWhatWeCanCook(recipeList);
+          // console.log("CAN'T COOK", pantry.CanNotCookRecipes);
+          // console.log("CAN COOK", pantry.CanCookRecipes);
+
           expect(pantry.canWeCook('Loaded Chocolate Chip Pudding Cookie Cups')).to.equal(this.hasIngredients = true);
       });
 
@@ -194,5 +197,7 @@ describe('Pantry', function() {
           expect(pantry.showStillNeeded('Loaded Chocolate Chip Pudding Cookie Cups')).deep.equal(
             ["vanilla extract"]);
       });
+
+      // Add it block to test findWhatWeCanCook() method!
 
 });
