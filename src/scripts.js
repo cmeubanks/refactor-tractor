@@ -190,16 +190,16 @@ function showPantryView() {
     getData('ingredients')
     .then(result => ingredientsArray = result)
     .then(() => {
-      let ingredientNames = [];
+      let ingredientTotal = [];
 
       pantryIngredients.forEach(ing => {
         ingredientsArray.forEach(ingredient => {
           if(ing.ingredient === ingredient.id) {
-            ingredientNames.push(ingredient.name);
+            ingredientTotal.push(ingredient);
           }
         })
       })
-      domUpdates.displayPantryView(ingredientNames);
+      domUpdates.displayPantryView(ingredientTotal);
     })
   }
 }

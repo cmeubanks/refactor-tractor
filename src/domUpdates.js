@@ -71,7 +71,7 @@ let domUpdates = {
     })
   },
 
-  displayPantryView(ingredientNames) {
+  displayPantryView(ingredientTotal) {
     let pantryButton = document.querySelector('.view-pantry');
     let cardArea = document.querySelector('.all-cards');
 
@@ -91,12 +91,12 @@ let domUpdates = {
       <ul class="grocery-list"></ul>
       </div>`)
 
-    ingredientNames.forEach(ingredient => {
-      cardArea.innerHTML += `<div id='${ingredient}' class='card'>
+    ingredientTotal.forEach(ingredient => {
+      cardArea.innerHTML += `<div id='${ingredient.id}' class='card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>
-      <button id='${ingredient}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
+      <button id='${ingredient.id}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
       </button>
-      <span id='${ingredient}' class='ingredient-name'>${ingredient}</span>
+      <span id='${ingredient.name}' class='ingredient-name'>${ingredient.name}</span>
       </div>`
     })
   },
