@@ -26,7 +26,7 @@ let ingredientsArray;
 
 let pantryButton = document.querySelector('.view-pantry');
 let addRecipeButton = document.querySelector('.add-button');
-let addIngButton = document.querySelector('.add-ing-button');
+let addIngButton = document.getElementById('addIngBtn');
 let ingCard = document.querySelector('.ing-card');
 // let groceryList = document.querySelector('.grocery-list');
 
@@ -39,6 +39,9 @@ searchButton.addEventListener('click', viewSearchMatches);
 
 pantryButton.addEventListener('click', showPantryView);
 // addRecipeButton.addEventListener('click', );
+addIngButton.addEventListener('click', function() {
+  console.log('YAY!');
+})
 
 function onStartup() {
   getData('users')
@@ -119,14 +122,14 @@ function addRecipeToCookList(event, user) {
   }
 
 function addToGroceryList(event) {
-  console.log("added ingredient to list!")
-  let specificIngredient = this.contents.find(ingredient => {
-    if (ingredient.id  === Number(event.target.id)) {
+  let specificIngredient = pantry.contents.find(ingredient => {
+    console.log(event.target.id);
+    if (ingredient.ingredient  === Number(event.target.id)) {
       return ingredient;
     }
   });
   pantry.addIngToGroceryList(specificIngredient);
-  domUpdates.displayGroceryList(pantry);
+  domUpdates.displayGroceryList(user, pantry);
 }
 
 function cardButtonConditionals(event) {
