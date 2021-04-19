@@ -3,7 +3,9 @@ const recipeData = require('../src/data/recipes.js');
 class Pantry {
   constructor(userIngredients) {
     this.contents = userIngredients;
-    this.hasIngredients = false;
+    this.groceryList = [];
+    this.CanCookRecipes = [];
+    this.CanNotCookRecipes = [];
   }
 
   viewAllIngredients() {
@@ -20,8 +22,22 @@ class Pantry {
     let pantryIng = this.viewAllIngredients();
 
     let checkIt = currRecipe.filter(ing => pantryIng.includes(ing) ? ing : null);
-    return (checkIt.length === currRecipe.length) ? this.hasIngredients = true : his.hasIngredients = false;
+    return (checkIt.length === currRecipe.length) ? true : false;
   }
+
+  // findWhatWeCanCook(recipeList) {
+  //   recipeList.forEach(recipe => {
+  //     if(this.canWeCook(recipe)) {
+  //       this.CanCookRecipes.push(recipe);
+  //       return;
+  //     } else {
+  //       this.CanNotCookRecipes.push(recipe);
+  //       return;
+  //     }
+  //   })
+  // }
+  // WE MAY WANT TO ADD THIS FUNCTIONALITY IN THE SCRIPTS INSTEAD
+  // IT'S NOT WORKING HERE AND I THINK IT MAY BE BETTER TO DIVVY OUT
 
   cookRecipe(recipe) {
     let currRecipe = this.findIngredients(recipe);
@@ -43,6 +59,12 @@ class Pantry {
           return ingObj;
         }
     })
+  }
+
+  addIngToGroceryList(recipe) {
+    if (!this.groceryList.includes(recipe)) {
+      this.groceryList.push(recipe);
+    }
   }
 
 }
