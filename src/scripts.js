@@ -50,7 +50,6 @@ function onStartup() {
   })
   user = new User(userId, newUser.name, newUser.pantry)
   pantry = new Pantry(user.pantry)
-    console.log("pantry class on load", pantry)
   domUpdates.greetUser(user);
   })
   getData('recipes')
@@ -174,7 +173,6 @@ function viewSearchMatches() {
 
 // PANTRY FUNCTIONS
 function showPantryView() {
-  console.log(pantry)
   let pantryIngredients = pantry.viewAllIngredients();
   togglePantryBoxDisplay(user, pantry);
 
