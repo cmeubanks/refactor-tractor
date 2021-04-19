@@ -22,6 +22,7 @@ let user, pantry, cookbook;
 
 let userArray
 let recipeArray
+let ingredientsArray
 // let recipeArray = [];
 // console.log(recipeArray)
 // let ingredientArray = [];
@@ -132,15 +133,20 @@ function cardButtonConditionals(event) {
 
 
 function displayDirections(event) {
+
   let newRecipeInfo = cookbook.recipes.find(recipe => {
     if (recipe.id === Number(event.target.id)) {
       return recipe;
     }
   })
-  let recipeObject = new Recipe(newRecipeInfo, ingredientsData);
-  let cost = recipeObject.calculateCost()
-  let costInDollars = (cost / 100).toFixed(2)
-  domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+  getData('ingredients')
+  .then(result => ingredientsArray = result)
+  .then(() => {
+    let recipeObject = new Recipe(newRecipeInfo, ingredientsArray);
+    let cost = recipeObject.calculateCost()
+    let costInDollars = (cost / 100).toFixed(2)
+    domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+  })
 }
 
 function viewSearchMatches() {
