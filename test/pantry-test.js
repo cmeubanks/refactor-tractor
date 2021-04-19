@@ -1,9 +1,6 @@
-const chai = require('chai');
-const expect = chai.expect;
+import { expect } from 'chai';
 
-const Pantry = require('../src/pantry.js');
-// const ingredientsData = require('../src/data/ingredients.js');
-const recipeData = require('../src/data/recipes.js');
+import Pantry from '../src/pantry.js';
 
 describe('Pantry', function() {
 

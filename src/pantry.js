@@ -69,5 +69,4 @@ class Pantry {
 
 }
 
-module.exports = Pantry;
-// export default Pantry;
+export default Pantry;
