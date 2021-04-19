@@ -1,0 +1,27 @@
+// RESPONSIVE SCREEN
+
+@media screen and (max-width: 1000px) {
+// CARDS
+ //  body {
+ //    box-sizing: border-box;
+ //    font-family: 'Comic Sans', sans-serif;
+ //    margin: auto;
+ //  }
+ //
+ //  main {
+ //   background: $main-background-color;
+ //   @include dimensions(100%, 100%);
+ //   grid-template-columns: repeat(1fr, 1fr, 2.5fr, 1fr);
+ // }
+
+  .all-cards {
+    background-color: pink;
+    grid-template-columns: 1;
+  }
+}
+
+
+// @media screen and (max-width: 500px) {
+//
+//
+// }
