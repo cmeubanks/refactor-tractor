@@ -1,29 +1,31 @@
-// RESPONSIVE SCREEN
+@import "variables";
+@import "mixins";
 
-@media (min-width: 500px) and (max-width: 1000px) {
-// CARDS
- //  body {
- //    box-sizing: border-box;
- //    font-family: 'Comic Sans', sans-serif;
- //    margin: auto;
- //  }
- //
- //  main {
- //   background: $main-background-color;
- //   @include dimensions(100%, 100%);
- //   grid-template-columns: repeat(1fr, 1fr, 2.5fr, 1fr);
- // }
+// RESPONSIVE SCREENS
+@media screen and (min-width: $large-breakpoint) {
   .all-cards {
-    background-color: pink;
+    // background-color: blue;
+    grid-template-columns: repeat(5, 5fr);
+  }
+}
+
+@media screen and (min-width: $laptop-breakpoint) and (max-width: $large-breakpoint - 1) {
+  .all-cards {
+    // background-color: green;
+    grid-template-columns: repeat(4, 5fr);
+  }
+}
+
+@media screen and (min-width: $tablet-breakpoint) and (max-width: $laptop-breakpoint - 1) {
+  .all-cards {
+    // background-color: blue;
     grid-template-columns: repeat(3, 5fr);
   }
 }
 
-
-@media screen and (max-width: 499px) {
+@media screen and (min-width: $mobile-breakpoint) and (max-width: $tablet-breakpoint - 1) {
   .all-cards {
-    background-color: blue;
+    // background-color: pink;
     grid-template-columns: repeat(1, 5fr);
   }
-
 }
