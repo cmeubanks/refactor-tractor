@@ -17,40 +17,19 @@ let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let searchButton = document.querySelector('.find')
-// let cookbook = new Cookbook(recipeData);
+
 let user, pantry, cookbook;
 
 let userArray
 let recipeArray
 let ingredientsArray
-// let recipeArray = [];
-// console.log(recipeArray)
-// let ingredientArray = [];
-// console.log(userArray)
-// window.onload = onStartup();
+
 window.addEventListener('load', onStartup)
 
 homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches)
-
-// getData(userArray)
-// .then(userArray => user = new User())
-// .then(response => response.forEach(object => userArray.push(object)))
-
-
-// const userData = new Promise(getData('users'))
-// userArray.push(userData)
-// function convertFetchData() {
-// recipeArray = recipeArray.reduce((arr, recipe) => {
-// const values = Object.values(recipe)
-// values.forEach(item => {
-//   arr.push(item)
-// })
-// return arr
-// }, [])
-// }
 
 function onStartup() {
   getData('users')
