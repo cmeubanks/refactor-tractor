@@ -1,8 +1,6 @@
 @import "variables";
 @import "mixins";
 
-
-
 // does this actually do anything?
 html {
   background-color: $main-background-color;
@@ -12,7 +10,7 @@ html {
 
 body {
   box-sizing: border-box;
-  font-family: 'Comic Sans', sans-serif;
+  font-family: "Gill Sans", sans-serif;
   margin: auto;
 }
 
@@ -133,7 +131,6 @@ img {
   display: grid;
   grid-gap: 30px;
   grid-template-columns: repeat(4, 1fr);
-  // grid-template-columns: 1fr, 1fr, 2.5fr, 1fr;
   padding: 30px 0 30px 30px;
   width: 95.5vw;
 }
@@ -190,4 +187,6 @@ ol {
   background-image: url("https://image.flaticon.com/icons/svg/148/148841.svg");
   background-repeat: no-repeat;
 }
+
+// THIS MUST BE AT THE BOTTOM
 @import "media";
