@@ -18,10 +18,11 @@ let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let searchButton = document.querySelector('.find')
-let cookbook = new Cookbook(recipeData);
-let user, pantry;
+// let cookbook = new Cookbook(recipeData);
+let user, pantry, cookbook;
 
-let userArray = [];
+let userArray
+let recipeArray
 // let recipeArray = [];
 // console.log(recipeArray)
 // let ingredientArray = [];
@@ -52,17 +53,23 @@ searchButton.addEventListener('click', viewSearchMatches)
 // }
 
 function onStartup() {
-  getData(userArray)
-  .then(userArray => return {user = new User(userArray[0].id, userArray[0].name, userArray[0].pantry)})
-  console.log(user)
-  // let userId = (Math.floor(Math.random() * 49) + 1)
-  // let newUser = users.find(user => {
-  //   return user.id === Number(userId);
-  // });
-  // user = new User(userId, newUser.name, newUser.pantry)
+  getData('users')
+  .then(response => userArray = response)
+  .then(() => {
+  let userId = (Math.floor(Math.random() * 49) + 1)
+  let newUser = userArray.find(user => {
+  return user.id === Number(userId)
+  })
+  user = new User(userId, newUser.name, newUser.pantry)
   pantry = new Pantry(newUser.pantry)
   domUpdates.populateCards(cookbook.showAllRecipes(), user);
   domUpdates.greetUser(user);
+  })
+  getData('recipes')
+  .then(response => recipeArray = response)
+  .then(() => {
+    cookbook = new Cookbook(recipeArray)
+  })
 }
 
 function viewFavorites() {
