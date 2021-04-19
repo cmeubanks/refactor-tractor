@@ -3,6 +3,11 @@ let domUpdates = {
   populateCards(recipes, user) {
     let cardArea = document.querySelector('.all-cards');
 
+    cardArea.innerHTML = '';
+    if (cardArea.classList.contains('all')) {
+      cardArea.classList.remove('all')
+    }
+
     recipes.forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
@@ -89,7 +94,7 @@ let domUpdates = {
     pantry.contents.forEach(ingredient => {
       cardArea.innerHTML += `<div id='${ingredient.name}' class='card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>
-      <button id='addIngButton ${ingredient.name}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
+      <button id='${ingredient.name}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
       <img id='${ingredient.name}' class='add' src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add ingredient to grocery list'></button>
       <span id='${ingredient.name}' class='ingredient-name'>${ingredient.name}</span>
       </div>`

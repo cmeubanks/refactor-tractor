@@ -25,9 +25,9 @@ class Pantry {
     return (checkIt.length === currRecipe.length) ? true : false;
   }
 
-  // findWhatWeCanCook(recipeList) {
-  //
-  // }
+  findWhatWeCanCook(recipeList) {
+
+  }
 
   cookRecipe(recipe) {
     let currRecipe = this.findIngredients(recipe);
@@ -59,5 +59,5 @@ class Pantry {
 
 }
 
-module.exports = Pantry;
-// export default Pantry;
+// module.exports = Pantry;
+export default Pantry;

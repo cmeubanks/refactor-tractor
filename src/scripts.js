@@ -22,7 +22,8 @@ let user, pantry;
 
 let pantryButton = document.querySelector('.view-pantry');
 let addRecipeButton = document.querySelector('.add-button');
-let addIngButton = document.getElementById('addIngButton')
+let addIngButton = document.querySelector('.add-ing-button');
+let ingCard = document.querySelector('.ing-card');
 // let groceryList = document.querySelector('.grocery-list');
 
 // window.onload = onStartup();
@@ -35,11 +36,6 @@ searchButton.addEventListener('click', viewSearchMatches);
 
 pantryButton.addEventListener('click', showPantryView);
 // addRecipeButton.addEventListener('click', );
-addIngButton.addEventListener('click', function(event){
-  console.log("It worked!!!!!!!!!");
-
-  addToGroceryList(event);
-});
 
 function onStartup() {
   let userId = (Math.floor(Math.random() * 49) + 1)
@@ -107,9 +103,7 @@ function addRecipeToCookList(event) {
       return recipe;
     }
   });
-  if (event.target.classList.contains('add-button')) {
-    user.addToCookList(specificRecipe);
-  }
+  user.addToCookList(specificRecipe);
 }
 
 
@@ -119,15 +113,12 @@ function addToGroceryList(event) {
       return ingredient;
     }
   });
+
   pantry.addIngToGroceryList(specificIngredient);
   domUpdates.displayGroceryList(pantry);
 }
 
 function cardButtonConditionals(event) {
-  if (event.target.classList.contains('add-button')) {
-    addRecipeToCookList(event);
-  };
-
   if (event.target.classList.contains('favorite')) {
     favoriteCard(event);
   } else if (event.target.classList.contains('card-picture')) {
@@ -136,9 +127,16 @@ function cardButtonConditionals(event) {
     favButton.innerHTML = 'View Favorites';
     pantryButton.innerHTML = 'View Pantry';
     domUpdates.populateCards(cookbook.recipes);
+  } else if (event.target.classList.contains('add-button')) {
+    console.log("ADDED RECIPE!!!!!!!")
+
+    addRecipeToCookList(event);
+  } else if (event.target.classList.contains('add-ing-button')) {
+    console.log("ADDED INGREDIENT!!!!!!!")
+
+    addToGroceryList(event);
   }
 }
-
 
 function displayDirections(event) {
   let newRecipeInfo = cookbook.recipes.find(recipe => {
@@ -168,7 +166,7 @@ function showPantryView() {
 
   if (cardArea.classList.contains('home')) {
     cardArea.classList.remove('all');
-  };
+  }
 
   if (!pantry.contents.length) {
     pantryButton.innerHTML = 'You have an empty pantry!';
