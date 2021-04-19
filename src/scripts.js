@@ -1,11 +1,10 @@
 import './css/base.scss';
 import './css/styles.scss';
 
-import recipeData from './data/recipes';
-import ingredientsData from './data/ingredients';
-import users from './data/users';
+// import recipeData from './data/recipes';
+// import ingredientsData from './data/ingredients';
+// import users from './data/users';
 
-// import {getData} from './api';
 import {getData} from './api';
 import domUpdates from './domUpdates';
 import Pantry from './pantry';
@@ -62,13 +61,13 @@ function onStartup() {
   })
   user = new User(userId, newUser.name, newUser.pantry)
   pantry = new Pantry(newUser.pantry)
-  domUpdates.populateCards(cookbook.showAllRecipes(), user);
   domUpdates.greetUser(user);
   })
   getData('recipes')
   .then(response => recipeArray = response)
   .then(() => {
     cookbook = new Cookbook(recipeArray)
+    domUpdates.populateCards(cookbook.showAllRecipes(), user);
   })
 }
 
