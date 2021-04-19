@@ -5,11 +5,19 @@
 // light salmon #FFA686
 // macaroni and cheese #FEC196
 
+// COLORS
 $main-header-color: #FEC196;
 $main-background-color: linear-gradient(0.25turn, #FFA686, #AA767C);
 $card-background-color: linear-gradient(0.25turn, #63474D, #AA767C);
 $card-hover-background-color: #FEC196;
 $card-active-background-color: #63474D;
 
+// BORDERS
 $border-px-thin: 1px solid #000;
 $border-px-thick: 2px solid #000;
+
+// BREAKPOINTS
+$tablet-breakpoint: 1000px;
+$mobile-breakpoint: 400px;
+// $laptop-breakpoint: 
+// $large-breakpoint:
