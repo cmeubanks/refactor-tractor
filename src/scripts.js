@@ -1,11 +1,11 @@
 import './css/base.scss';
 import './css/styles.scss';
 
-import recipeData from './data/recipes';
-import ingredientsData from './data/ingredients';
-import users from './data/users';
+// import recipeData from './data/recipes';
+// import ingredientsData from './data/ingredients';
+// import users from './data/users';
 
-import { getData } from './api';
+import {getData} from './api';
 import domUpdates from './domUpdates';
 import Pantry from './pantry';
 import Recipe from './recipe';
@@ -16,9 +16,13 @@ import Cookbook from './cookbook';
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
-let searchButton = document.querySelector('.find');
-let cookbook = new Cookbook(recipeData);
-let user, pantry;
+let searchButton = document.querySelector('.find')
+
+let user, pantry, cookbook;
+
+let userArray;
+let recipeArray;
+let ingredientsArray;
 
 let pantryButton = document.querySelector('.view-pantry');
 let addRecipeButton = document.querySelector('.add-button');
@@ -26,7 +30,6 @@ let addIngButton = document.querySelector('.add-ing-button');
 let ingCard = document.querySelector('.ing-card');
 // let groceryList = document.querySelector('.grocery-list');
 
-// window.onload = onStartup();
 window.addEventListener('load', onStartup)
 
 homeButton.addEventListener('click', cardButtonConditionals);
@@ -38,15 +41,23 @@ pantryButton.addEventListener('click', showPantryView);
 // addRecipeButton.addEventListener('click', );
 
 function onStartup() {
+  getData('users')
+  .then(response => userArray = response)
+  .then(() => {
   let userId = (Math.floor(Math.random() * 49) + 1)
-  let newUser = users.find(user => {
-    return user.id === Number(userId);
-  });
+  let newUser = userArray.find(user => {
+  return user.id === Number(userId)
+  })
   user = new User(userId, newUser.name, newUser.pantry)
   pantry = new Pantry(newUser.pantry)
-  domUpdates.populateCards(cookbook.showAllRecipes(), user);
   domUpdates.greetUser(user);
-  getData();
+  })
+  getData('recipes')
+  .then(response => recipeArray = response)
+  .then(() => {
+    cookbook = new Cookbook(recipeArray)
+    domUpdates.populateCards(cookbook.showAllRecipes(), user);
+  })
 }
 
 function viewFavorites() {
@@ -139,15 +150,20 @@ function cardButtonConditionals(event) {
 }
 
 function displayDirections(event) {
+
   let newRecipeInfo = cookbook.recipes.find(recipe => {
     if (recipe.id === Number(event.target.id)) {
       return recipe;
     }
   })
-  let recipeObject = new Recipe(newRecipeInfo, ingredientsData);
-  let cost = recipeObject.calculateCost()
-  let costInDollars = (cost / 100).toFixed(2)
-  domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+  getData('ingredients')
+  .then(result => ingredientsArray = result)
+  .then(() => {
+    let recipeObject = new Recipe(newRecipeInfo, ingredientsArray);
+    let cost = recipeObject.calculateCost()
+    let costInDollars = (cost / 100).toFixed(2)
+    domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+  })
 }
 
 function viewSearchMatches() {
