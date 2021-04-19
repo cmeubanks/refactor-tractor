@@ -45,9 +45,6 @@ let domUpdates = {
   },
 
   generateTags(tagsArray) {
-    //onload buttons that represent the recipe tags are loaded into the article
-    //use .reduce to create new array of non repeating info
-    //using .innderHTML and an iterator (forEach) load the tags
     const tagButton = document.querySelector('#radioBtnArea');
     tagsArray.forEach(tag => {
       tagButton.insertAdjacentHTML('afterbegin', `<input type='radio' id='${tag}'
