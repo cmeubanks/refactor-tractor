@@ -1,6 +1,6 @@
 // RESPONSIVE SCREEN
 
-@media screen and (max-width: 1000px) {
+@media (min-width: 500px) and (max-width: 1000px) {
 // CARDS
  //  body {
  //    box-sizing: border-box;
@@ -15,12 +15,15 @@
  // }
   .all-cards {
     background-color: pink;
-    grid-template-columns: repeat(2, 5fr);
+    grid-template-columns: repeat(3, 5fr);
   }
 }
 
 
-// @media screen and (max-width: 500px) {
-//
-//
-// }
+@media screen and (max-width: 499px) {
+  .all-cards {
+    background-color: blue;
+    grid-template-columns: repeat(1, 5fr);
+  }
+
+}
