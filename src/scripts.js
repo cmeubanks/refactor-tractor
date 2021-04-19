@@ -182,14 +182,25 @@ function showPantryView() {
   if (cardArea.classList.contains('home')) {
     cardArea.classList.remove('all');
   }
-
   if (!pantry.contents.length) {
     pantryButton.innerHTML = 'You have an empty pantry!';
     domUpdates.populateCards(cookbook.recipes);
     return;
   } else {
-    domUpdates.displayPantryView(user, pantry);
-    return;
+    getData('ingredients')
+    .then(result => ingredientsArray = result)
+    .then(() => {
+      let ingredientNames = [];
+
+      pantryIngredients.forEach(ing => {
+        ingredientsArray.forEach(ingredient => {
+          if(ing.ingredient === ingredient.id) {
+            ingredientNames.push(ingredient.name);
+          }
+        })
+      })
+      domUpdates.displayPantryView(ingredientNames);
+    })
   }
 }
 

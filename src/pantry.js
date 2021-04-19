@@ -9,7 +9,7 @@ class Pantry {
   }
 
   viewAllIngredients() {
-    return this.contents.map(ingredient => ingredient.name);
+    return this.contents;
   }
 
   findIngredients(recipe) {
