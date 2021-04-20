@@ -113,7 +113,6 @@ let domUpdates = {
 
   displayGroceryList(pantry) {
     let groceryList = document.querySelector('.grocery-list');
-
     groceryList.innerText = " ";
 
     if (pantry.groceryList.length) {

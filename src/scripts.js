@@ -251,4 +251,5 @@ function addToGroceryList(event) {
         }
     })
   })
+  domUpdates.displayGroceryList(pantry);
 }
