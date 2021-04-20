@@ -47,8 +47,8 @@ let domUpdates = {
   generateTags(tagsArray) {
     const tagButton = document.querySelector('#radioBtnArea');
     tagsArray.forEach(tag => {
-      tagButton.insertAdjacentHTML('afterbegin', `<input type='checkbox' class="recipe-tag" id='${tag}'
-      <label for='${tag}'>${tag}</label><br>`)
+      tagButton.insertAdjacentHTML('afterbegin', `<div><input type='checkbox' class="recipe-tag" id='${tag}'>
+      <label for='${tag}'>${tag}</label></div>`)
     })
   },
 
