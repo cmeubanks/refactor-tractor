@@ -6,10 +6,13 @@
 // macaroni and cheese #FEC196
 
 // COLORS
+$background: #AA767C;
+$background2: #D6A184;
 $main-header-color: #FEC196;
-$main-background-color: linear-gradient(0.25turn, #FFA686, #AA767C);
+$header-background-color: linear-gradient(0.25turn, #FEC196, #FFA686);
+$main-background-color: linear-gradient(0.25turn, #AA767C, #63474D);
 $card-background-color: linear-gradient(0.25turn, #63474D, #AA767C);
-$card-hover-background-color: #FEC196;
+$card-hover-background-color: #FFA686;
 $card-active-background-color: #63474D;
 
 // BORDERS
