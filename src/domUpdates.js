@@ -19,9 +19,6 @@ let domUpdates = {
           <header id='${recipe.id}' class='card-header'>
             <label for='add-button' class='hidden'>Click to add recipe</label>
             <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
-              <img id='${recipe.id} favorite' class='add add-recipe-button'
-              src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
-              recipes to cook'>
             </button>
             <label for='favorite-button' class='hidden'>Click to favorite recipe
             </label>
@@ -52,7 +49,9 @@ let domUpdates = {
   generateTags(tagsArray) {
     const tagButton = document.querySelector('#radioBtnArea');
     tagsArray.forEach(tag => {
-      tagButton.insertAdjacentHTML('afterbegin', `<input type='checkbox' class="recipe-tag" id='${tag}'
+      tagButton.insertAdjacentHTML('afterbegin',
+      `<input type='checkbox' class='recipe-tag' id='${tag}'
+      aria-checked='false' tabindex='0'>
       <label for='${tag}'>${tag}</label><br>`)
     })
   },
@@ -94,7 +93,7 @@ let domUpdates = {
     })
   },
 
-  displayPantryView(user, pantry) {
+  displayPantryView(ingredientTotal) {
     let pantryButton = document.querySelector('.view-pantry');
     let cardArea = document.querySelector('.all-cards');
 
@@ -102,23 +101,23 @@ let domUpdates = {
 
     cardArea.innerHTML += ('beforebegin',
       `<div id='recipesUserCanCook' class='card can-cook pantry-box'>
-      <span id='canCookTitle' class='recipe-name'>"RECIPES YOU CAN COOK NOW"</span>
-      <ul class="can-cook-list"></ul>
+        <label for="canCookList" id='canCookTitle' class='recipe-name'>RECIPES YOU CAN COOK NOW</label>
+        <ul id='canCookList' class="can-cook-list"></ul>
       </div>
       <div id='recipesThatNeedIng' class='card cant-cook pantry-box'>
-      <span id='cantCookTitle' class='recipe-name'>"RECIPES YOU NEED TO SHOP FOR"</span>
-      <ul class="cant-cook-list"></ul>
+        <label for="canNotCookList" id='cantCookTitle' class='recipe-name'>RECIPES YOU NEED TO SHOP FOR</label>
+        <ul id='canNotCookList' class="cant-cook-list"></ul>
       </div>
-      <div id='groceryList' class='card grocery-list-box pantry-box'>
-      <span id='groceryListTitle' class='recipe-name'>"GROCERY LIST"</span>
-      <ul class="grocery-list"></ul>
+      <div id='groceryListBox' class='card grocery-list-box pantry-box'>
+        <label for="groceryList" id='groceryListTitle' class='recipe-name'>GROCERY LIST</label>
+        <ul id='groceryList' class="grocery-list"></ul>
       </div>`)
 
-    pantry.contents.forEach(ingredient => {
-      cardArea.innerHTML += `<div id='${ingredient.name}' class='card'>
+    ingredientTotal.forEach(ingredient => {
+      cardArea.innerHTML += `<div id='${ingredient.id}' class='ingredient-card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>
-      <button id='${ingredient.name}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
-      <img id='${ingredient.name}' class='add' src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add ingredient to grocery list'></button>
+      <button id='${ingredient.id}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
+      </button>
       <span id='${ingredient.name}' class='ingredient-name'>${ingredient.name}</span>
       </div>`
     })
@@ -126,40 +125,27 @@ let domUpdates = {
 
   displayGroceryList(pantry) {
     let groceryList = document.querySelector('.grocery-list');
+    groceryList.innerText = " ";
 
-    if (user.favoriteRecipes.length) {
+    if (pantry.groceryList.length) {
       pantry.groceryList.forEach(ingredient => {
-        groceryList.insertAdjacentHTML('beforebegin', `<li>
-        ${ingredient.name}</li>
-        `)
+        groceryList.innerHTML += `<li>${ingredient.name}</li>`
       })
     }
   },
 
-  //
-  //
-  // } else {
-  //   return;
-  // }
-  // addRecipesToPantryView(user, pantry) {
-  //   let canCookBox = document.querySelector('.can-cook');
-  //   let canCookList = document.querySelector('.can-cook-list');
-  //   let canNotCookBox = document.querySelector('.cant-cook');
-  //   let cantCookList = document.querySelector('.cant-cook-list');
-  //
-  //    pantry.canWeCook(user.recipesToCook);
+  displayRecipesToCook(user) {
+    let canCookList = document.querySelector('.can-cook-list');
+    let canNotCookList = document.querySelector('.cant-cook-list');
 
-  //   user.recipesToCook.forEach(rec => {
-  //     if(!this.hasIngredients) {
-  //         pantry.showStillNeeded(rec);
-  //         cantCookList.insertAdjacentHTML('afterbegin', `<li>${rec.name}</li>`);
-  //     }
-  //     } else {
-  //         pantry.cookRecipe(rec);
-  //         canCookList.insertAdjacentHTML('afterbegin', `<li>${rec.name}</li>`);
-  //     }
-  //   })
-  // }
+    if (user.recipesToCook.length) {
+      user.recipesToCook.forEach(recipe => {
+        canCookList.insertAdjacentHTML('beforebegin',
+        `<li>${recipe.name}</li><button class="cook-me-btn" class="cookMeBtn">Cook Me</button>
+        `)
+      })
+    }
+  }
 
 };
 
