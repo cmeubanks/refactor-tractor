@@ -76,20 +76,20 @@ let domUpdates = {
 
     cardArea.innerHTML += ('beforebegin',
       `<div id='recipesUserCanCook' class='card can-cook pantry-box'>
-      <span id='canCookTitle' class='recipe-name'>"RECIPES YOU CAN COOK NOW"</span>
-      <ul class="can-cook-list"></ul>
+        <label for="canCookList" id='canCookTitle' class='recipe-name'>RECIPES YOU CAN COOK NOW</label>
+        <ul id='canCookList' class="can-cook-list"></ul>
       </div>
       <div id='recipesThatNeedIng' class='card cant-cook pantry-box'>
-      <span id='cantCookTitle' class='recipe-name'>"RECIPES YOU NEED TO SHOP FOR"</span>
-      <ul class="cant-cook-list"></ul>
+        <label for="canNotCookList" id='cantCookTitle' class='recipe-name'>RECIPES YOU NEED TO SHOP FOR</label>
+        <ul id='canNotCookList' class="cant-cook-list"></ul>
       </div>
-      <div id='groceryList' class='card grocery-list-box pantry-box'>
-      <span id='groceryListTitle' class='recipe-name'>"GROCERY LIST"</span>
-      <ul class="grocery-list"></ul>
+      <div id='groceryListBox' class='card grocery-list-box pantry-box'>
+        <label for="groceryList" id='groceryListTitle' class='recipe-name'>GROCERY LIST</label>
+        <ul id='groceryList' class="grocery-list"></ul>
       </div>`)
 
     ingredientTotal.forEach(ingredient => {
-      cardArea.innerHTML += `<div id='${ingredient.id}' class='card'>
+      cardArea.innerHTML += `<div id='${ingredient.id}' class='ingredient-card'>
       <label for='add-ing-button' class='hidden'>Click to add ingredient to grocery list</label>
       <button id='${ingredient.id}' aria-label='add-ingredient-button' class='add-ing-button card-button'>
       </button>
@@ -98,12 +98,12 @@ let domUpdates = {
     })
   },
 
-  displayGroceryList(user, pantry) {
-    let groceryList = document.querySelector('.grocery-list');
+  displayGroceryList(pantry) {
+    let groceryList = document.querySelector('.grocery-list-box');
 
-    if (user.favoriteRecipes.length) {
+    if (pantry.groceryList.length) {
       pantry.groceryList.forEach(ingredient => {
-        groceryList.insertAdjacentHTML('beforebegin', `<li>
+        groceryList.insertAdjacentHTML('beforeend', `<li>
         ${ingredient.name}</li>
         `)
       })
