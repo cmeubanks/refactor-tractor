@@ -8,6 +8,11 @@ let domUpdates = {
       cardArea.classList.remove('all')
     }
 
+    let tagArea = document.querySelector('#filterTagsAside')
+    if(tagArea.classList.contains('hidden')) {
+      tagArea.classList.remove('hidden')
+    }
+
     recipes.forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
@@ -57,27 +62,32 @@ let domUpdates = {
   //   clearTags.add
   // }
 
-  showRecipeNeeds(recipe,recipeCost) {
+  showRecipeNeeds(recipe, cost) {
+    let tagArea = document.querySelector('#filterTagsAside')
+    tagArea.classList.add('hidden')
     let cardArea = document.querySelector('.all-cards');
-
+    let recipeIngredients = recipe.getRecipeInstructions()
     cardArea.classList.add('all');
-    cardArea.innerHTML = `<h3>${recipe.name}</h3>
+    cardArea.innerHTML = `<h3>${recipe.recipe.name}</h3>
     <p class='all-recipe-info'>
     <strong>It will cost: </strong><span class='cost recipe-info'>
-    $${recipeCost}</span><br><br>
+    $${cost}</span><br><br>
     <strong>You will need: </strong><span class='ingredients recipe-info'></span>
     <strong>Instructions: </strong><ol><span class='instructions recipe-info'>
     </span></ol>
     </p>`;
+
     let ingredientsSpan = document.querySelector('.ingredients');
-    let instructionsSpan = document.querySelector('.instructions');
-    recipe.ingredients.forEach(ingredient => {
+
+    let instructionsSpan =
+     document.querySelector('.instructions');
+    recipeIngredients.forEach(ingredient => {
       ingredientsSpan.insertAdjacentHTML('afterbegin', `<ul><li>
       ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}
-      ${ingredient.name}</li></ul>
+      ${ingredient.quantity.name}</li></ul>
       `)
     })
-    recipe.instructions.forEach(instruction => {
+    recipe.recipe.instructions.forEach(instruction => {
       instructionsSpan.insertAdjacentHTML('beforebegin', `<li>
       ${instruction.instruction}</li>
       `)
