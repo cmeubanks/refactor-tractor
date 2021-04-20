@@ -69,23 +69,7 @@ let domUpdates = {
     <strong>Instructions: </strong><ol><span class='instructions recipe-info'>
     </span></ol>
     </p>`;
-    //  let curIngredientNames = recipe.getIngredientNames();
-    //  console.log(curIngredientNames)
-    // const ingredientsObj = recipe.recipe.ingredients.map(ingredient => {
-    // const ingredientList = {};
-    // ingredientList.id = ingredient.id;
-    // ingredientList.amount = ingredient.quantity.amount;
-    // ingredientList.unit = ingredient.quantity.unit;
-    // curIngredientNames.forEach(ingredientData => {
-    // const name = ingredientData.name;
-    // if (ingredientData.id === ingredientList.id) {
-    //   ingredientList.name = ingredientData.name;
-    //   // ingredientList.amount = amount;
-    //   // ingredientList.unit = unit;
-    // }
-    // });
-    // return ingredientList;
-    // });
+
     let ingredientsSpan = document.querySelector('.ingredients');
 
     let instructionsSpan =
