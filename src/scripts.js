@@ -17,6 +17,7 @@ let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let searchButton = document.querySelector('.find')
+let tagsContainer = document.querySelector('#filterTagsAside')
 
 let user, pantry, cookbook;
 
@@ -36,8 +37,8 @@ homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
-
 pantryButton.addEventListener('click', showPantryView);
+tagsContainer.addEventListener('click', grabSelectedTags);
 // addRecipeButton.addEventListener('click', );
 
 function onStartup() {
@@ -70,7 +71,21 @@ function loadTags(cookbookRecipes) {
     })
     return arr
   },[])
-  generateTags(tagsArray)
+  domUpdates.generateTags(tagsArray)
+}
+
+
+function grabSelectedTags() {
+  let selectedTags = []
+  if(event.target.classList.contains('clear-tags')){
+    return false
+  }
+  selectedTags.push(event.target.id)
+  console.log(selectedTags)
+}
+
+function filterByTags() {
+
 }
 
 function viewFavorites() {
