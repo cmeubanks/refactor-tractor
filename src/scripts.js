@@ -11,7 +11,7 @@ import Pantry from './pantry';
 import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
-
+import Ingredient from './ingredient';
 
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
@@ -188,7 +188,7 @@ function displayDirections(event) {
     let recipeObject = new Recipe(newRecipeInfo, ingredientsArray);
     let cost = recipeObject.calculateCost()
     let costInDollars = (cost / 100).toFixed(2)
-    domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+    domUpdates.showRecipeNeeds(recipeObject, costInDollars)
   })
 }
 
