@@ -57,27 +57,47 @@ let domUpdates = {
   //   clearTags.add
   // }
 
-  showRecipeNeeds(recipe,recipeCost) {
+  showRecipeNeeds(recipe, cost) {
     let cardArea = document.querySelector('.all-cards');
-
+    let recipeIngredients = recipe.recipe.ingredients
     cardArea.classList.add('all');
-    cardArea.innerHTML = `<h3>${recipe.name}</h3>
+    cardArea.innerHTML = `<h3>${recipe.recipe.name}</h3>
     <p class='all-recipe-info'>
     <strong>It will cost: </strong><span class='cost recipe-info'>
-    $${recipeCost}</span><br><br>
+    $${cost}</span><br><br>
     <strong>You will need: </strong><span class='ingredients recipe-info'></span>
     <strong>Instructions: </strong><ol><span class='instructions recipe-info'>
     </span></ol>
     </p>`;
+    //  let curIngredientNames = recipe.getIngredientNames();
+    //  console.log(curIngredientNames)
+    // const ingredientsObj = recipe.recipe.ingredients.map(ingredient => {
+    // const ingredientList = {};
+    // ingredientList.id = ingredient.id;
+    // ingredientList.amount = ingredient.quantity.amount;
+    // ingredientList.unit = ingredient.quantity.unit;
+    // curIngredientNames.forEach(ingredientData => {
+    // const name = ingredientData.name;
+    // if (ingredientData.id === ingredientList.id) {
+    //   ingredientList.name = ingredientData.name;
+    //   // ingredientList.amount = amount;
+    //   // ingredientList.unit = unit;
+    // }
+    // });
+    // return ingredientList;
+    // });
+     console.log(recipe.getRecipeInstructions())
     let ingredientsSpan = document.querySelector('.ingredients');
-    let instructionsSpan = document.querySelector('.instructions');
-    recipe.ingredients.forEach(ingredient => {
+
+    let instructionsSpan =
+     document.querySelector('.instructions');
+    recipeIngredients.forEach(ingredient => {
       ingredientsSpan.insertAdjacentHTML('afterbegin', `<ul><li>
       ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}
       ${ingredient.name}</li></ul>
       `)
     })
-    recipe.instructions.forEach(instruction => {
+    recipe.recipe.instructions.forEach(instruction => {
       instructionsSpan.insertAdjacentHTML('beforebegin', `<li>
       ${instruction.instruction}</li>
       `)

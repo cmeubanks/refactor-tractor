@@ -206,7 +206,7 @@ function displayDirections(event) {
     let recipeObject = new Recipe(newRecipeInfo, ingredientsArray);
     let cost = recipeObject.calculateCost()
     let costInDollars = (cost / 100).toFixed(2)
-    domUpdates.showRecipeNeeds(recipeObject,costInDollars)
+    domUpdates.showRecipeNeeds(recipeObject, costInDollars)
   })
 }
 

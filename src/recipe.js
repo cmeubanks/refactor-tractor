@@ -13,6 +13,20 @@ class Recipe {
     return this.recipe[type];
   }
 
+  getRecipeInstructions() {
+    let newObj = this.recipe.ingredients.reduce((obj, ingred) => {
+      // ingred.forEach()
+      obj["id"] = ingred.id;
+      obj["quantity"] = ingred.quantity.reduce((obj, currQ) => {
+        obj["amount"] = currQ.amount, obj["unit"] = currQ.unit, obj["name"] = this.ingredientsData.filter(ingredient => ingred.id === ingredient.id)[0].name
+        return obj
+      }, {})
+      return obj
+    },{});
+    newObj['instructions'] = this.recipe.instructions
+    return newObj
+  }
+
   calculateCost() {
     let costCounter = 0;
     this.recipe.ingredients.forEach(ingredient => {
