@@ -1,0 +1,46 @@
+@import "variables";
+@import "mixins";
+
+// RESPONSIVE SCREENS
+@media screen and (min-width: $large-breakpoint) {
+  .all-cards {
+    // background-color: blue;
+    grid-template-columns: repeat(5, 5fr);
+  }
+}
+
+@media screen and (min-width: $laptop-breakpoint) and (max-width: $large-breakpoint - 1) {
+  .all-cards {
+    // background-color: green;
+    grid-template-columns: repeat(4, 5fr);
+  }
+}
+
+@media screen and (min-width: $tablet-breakpoint) and (max-width: $laptop-breakpoint - 1) {
+  .all-cards {
+    // background-color: blue;
+    grid-template-columns: repeat(3, 5fr);
+  }
+  .user-info{
+    display: none;
+  }
+}
+
+@media screen and (min-width: $mobile-breakpoint) and (max-width: $tablet-breakpoint - 1) {
+  .all-cards {
+    // background-color: pink;
+    grid-template-columns: repeat(1, 5fr);
+  }
+  .user-info{
+    display: none;
+  }
+  .search-bar {
+    width: 50%;
+    position: absolute;
+    right: 9%;
+    top: 5%;
+  }
+  .main-header{
+    flex-direction: column;
+  }
+}
