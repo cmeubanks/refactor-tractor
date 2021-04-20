@@ -3,7 +3,7 @@
 
 // does this actually do anything?
 html {
-  background-color: $main-background-color;
+  background: $main-background-color;
   border: $border-px-thick;
   height: 100vh;
 }
@@ -20,6 +20,7 @@ main {
 }
 
 h1 {
+  background: $card-hover-background-color;
   border-right: $border-px-thick;
   font-size: 255%;
   margin-top: 0;
@@ -39,7 +40,7 @@ img {
 }
 
 .main-header {
-  background-color : $main-header-color;
+  background: $header-background-color;
   border: $border-px-thick;
   display: flex;
   @include dimensions(auto, 100%);
@@ -53,19 +54,25 @@ img {
   width: 40%;
 }
 
+.nav-bar {
+  display: flex;
+}
+
 .navButton {
   background-color: $main-header-color;
   border-left: $border-px-thin;
   border-right: $border-px-thin;
   font-size: 130%;
   margin: 1%;
+  @include dimensions(80%, fit-content);
+  align-self: center;
 }
 
- // does this go to anything?
 .search-bar {
   display: flex;
   @include dimensions(100%, 30%);
-  margin: 10px 0;
+  align-self: center;
+  // margin: 10px 0;
 }
 
 .search-button {
@@ -75,7 +82,6 @@ img {
   margin-top: 3px;
 }
 
-// should anything be done to this? <<<<<<<<<<<<<<<
 .card-button:hover,
 .navButton:hover,
 .search-button:hover,
@@ -98,28 +104,30 @@ img {
   padding-left: 10px;
 }
 
-.card-button {
-  border: $border-px-thin;
-  height: 27px;
-  margin: 3px;
-}
-
 .add-button {
-  background-color: $main-header-color;
-  display: flex;
-  width: 12%;
+  // background-color: $main-header-color;
+  // display: flex;
+  // width: 12%;
 }
 
 .add {
-  @include dimensions(auto, 100%);
+  @include dimensions(auto, 10%);
 }
 
 .hidden {
   display: none;
 }
 
+.home,
+.view-favorites,
+.view-pantry,
+.search-button,
+.search-input {
+  border-radius: $border-radius;
+}
+
 .favorite {
-  background-color: $main-header-color;
+  background-color: $card-active-background-color;
   background-image: url("https://image.flaticon.com/icons/svg/149/149222.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -127,32 +135,26 @@ img {
 }
 
 .all-cards {
-  box-sizing: border-box;
+  // box-sizing: border-box;
+  margin-top: 30px;
   display: grid;
   grid-gap: 30px;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 30px 0 30px 30px;
-  width: 95.5vw;
+  // grid-template-columns: repeat(4, 1fr);
+  // padding: 30px 0 30px 30px;
+  // width: 95.5vw;
 }
 
-
-
-.card {
-  background-color: $card-background-color;
-  border: 3px solid #000;
-  width: 100%;
-}
-
-.card-header {
-  background-color: $main-header-color;
-  border-bottom: $border-px-thin;
-  display: flex;
-  justify-content: space-between;
-}
 
 .all {
-  grid-gap: 0;
-  grid-template-columns: repeat(1, 1fr);
+  // grid-gap: 0;
+  // grid-template-columns: repeat(1, 1fr);
+}
+
+.card {
+  background: $card-background-color;
+  border: 3px solid #000;
+  border-radius: $border-radius;
+  // width: 100%;
 }
 
 // is ol doing anything?
@@ -161,6 +163,35 @@ ol {
   color: $main-header-color;
   font-size: 220%;
   width: 100%;
+}
+
+.card-header {
+  background: $header-background-color;
+  border-bottom: $border-px-thin;
+  // display: grid;
+  // grid-template-columns: repeat(2, auto);
+  // grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.card-button {
+  border: $border-px-thin;
+  // height: 27px;
+  margin: 10px;
+  // width: 25%;
+}
+
+.add-recipe-button {
+  color: #FFA686;
+  width: 25%;
+}
+
+.favorite-active,
+.favorite {
+  color: $card-hover-background-color;
+  width: 25%;
 }
 
 .recipe-name {
