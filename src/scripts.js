@@ -17,6 +17,7 @@ let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');
 let searchButton = document.querySelector('.find')
+let tagsContainer = document.querySelector('#filterTagsAside')
 
 let user, pantry, cookbook;
 
@@ -36,8 +37,8 @@ homeButton.addEventListener('click', cardButtonConditionals);
 favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
-
 pantryButton.addEventListener('click', showPantryView);
+tagsContainer.addEventListener('click', filterByTags);
 // addRecipeButton.addEventListener('click', );
 
 function onStartup() {
@@ -57,7 +58,54 @@ function onStartup() {
   .then(() => {
     cookbook = new Cookbook(recipeArray)
     domUpdates.populateCards(cookbook.showAllRecipes(), user);
+    loadTags(cookbook.recipes)
   })
+}
+
+function loadTags(cookbookRecipes) {
+  const tagsArray = cookbookRecipes.reduce((arr, recipe) => {
+    recipe.tags.forEach(tag => {
+      if(!arr.includes(tag)){
+        arr.push(tag)
+      }
+    })
+    return arr
+  },[])
+  domUpdates.generateTags(tagsArray)
+}
+
+
+function grabSelectedTags() {
+  let selectedTags = []
+  const recipeTags = document.querySelectorAll('.recipe-tag')
+  if(event.target.classList.contains('clear-tags')){
+    recipeTags.forEach(tag =>{
+      tag.checked = false;
+    })
+    return domUpdates.populateCards(cookbook.showAllRecipes(), user)
+  }
+  if(event.target.id === "radioBtnArea"){
+    return false
+  }
+  // const recipeTags = document.querySelectorAll('.recipe-tag')
+  recipeTags.forEach(tag =>{
+    if(tag.checked && !selectedTags.includes(tag.id)){
+      selectedTags.push(tag.id)
+    }
+  })
+  console.log(selectedTags)
+  return selectedTags
+}
+
+function filterByTags() {
+const selectedTags = grabSelectedTags()
+if(event.target.classList.contains('clear-tags')){
+  return false;
+}
+const searchResults = cookbook.recipes.filter(recipe => {
+    return recipe.tags.some(tag => selectedTags.includes(tag));
+  });
+  domUpdates.populateCards(searchResults, user)
 }
 
 function viewFavorites() {
