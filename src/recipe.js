@@ -14,15 +14,31 @@ class Recipe {
   }
 
   getRecipeInstructions() {
-    let newObj = this.recipe.ingredients.reduce((obj, ingred) => {
+    let newArray = []
+    this.recipe.ingredients.forEach(ingred => {
       // ingred.forEach()
-      obj["id"] = ingred.id;
-      obj["quantity"] = {"amount": ingred.quantity.amount, "unit": ingred.quantity.unit, "name": this.ingredientsData.filter(ingredient => ingred.id === ingredient.id)[0].name}
-      return obj
-    },{});
+      let item = {"id": ingred.id,
+      "quantity": {"amount": ingred.quantity.amount, "unit": ingred.quantity.unit, "name": this.ingredientsData.filter(ingredient => ingred.id === ingredient.id)[0].name},
+      }
+      newArray.push(item)
+    })
     // newObj['instructions'] = this.recipe.instructions
-    return newObj
+    console.log(newArray)
+    return newArray
   }
+
+
+
+  // getRecipeInstructions() {
+  //   let newObj = this.recipe.ingredients.reduce((obj, ingred) => {
+  //     // ingred.forEach()
+  //     obj["id"] = ingred.id;
+  //     obj["quantity"] = {"amount": ingred.quantity.amount, "unit": ingred.quantity.unit, "name": this.ingredientsData.filter(ingredient => ingred.id === ingredient.id)[0].name}
+  //     return obj
+  //   },{});
+  //   // newObj['instructions'] = this.recipe.instructions
+  //   return newObj
+  // }
 
   // instantiateIngredients() {
   //   return this.recipe.ingredients.map(recipeIngredient => {
