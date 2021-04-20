@@ -52,6 +52,11 @@ let domUpdates = {
     })
   },
 
+  // resetTagSelection() {
+  //   const clearTags = document.querySelector('.clear-tags')
+  //   clearTags.add
+  // }
+
   showRecipeNeeds(recipe,recipeCost) {
     let cardArea = document.querySelector('.all-cards');
 

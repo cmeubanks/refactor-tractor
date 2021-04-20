@@ -77,10 +77,17 @@ function loadTags(cookbookRecipes) {
 
 function grabSelectedTags() {
   let selectedTags = []
-  if(event.target.classList.contains('clear-tags') || event.target.id === "radioBtnArea"){
+  const recipeTags = document.querySelectorAll('.recipe-tag')
+  if(event.target.classList.contains('clear-tags')){
+    recipeTags.forEach(tag =>{
+      tag.checked = false;
+    })
+    return domUpdates.populateCards(cookbook.showAllRecipes(), user)
+  }
+  if(event.target.id === "radioBtnArea"){
     return false
   }
-  const recipeTags = document.querySelectorAll('.recipe-tag')
+  // const recipeTags = document.querySelectorAll('.recipe-tag')
   recipeTags.forEach(tag =>{
     if(tag.checked && !selectedTags.includes(tag.id)){
       selectedTags.push(tag.id)
@@ -92,6 +99,9 @@ function grabSelectedTags() {
 
 function filterByTags() {
 const selectedTags = grabSelectedTags()
+if(event.target.classList.contains('clear-tags')){
+  return false;
+}
 const searchResults = cookbook.recipes.filter(recipe => {
     return recipe.tags.some(tag => selectedTags.includes(tag));
   });
