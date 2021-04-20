@@ -1,9 +1,6 @@
-const chai = require('chai');
-const expect = chai.expect;
+import { expect } from 'chai';
 
-const Pantry = require('../src/pantry.js');
-// const ingredientsData = require('../src/data/ingredients.js');
-const recipeData = require('../src/data/recipes.js');
+import Pantry from '../src/pantry.js';
 
 describe('Pantry', function() {
 
@@ -51,7 +48,7 @@ describe('Pantry', function() {
           ]);
       });
 
-      it.only('should be able to tell if we have all the ingredients we need for a recipe', function() {
+      it('should be able to tell if we have all the ingredients we need for a recipe', function() {
           let ingredientsDataEx = [
             {"id": 20081, "name": "all purpose flour", "quantity": {"amount": 1.5, "unit": "c"}},
             {"id": 18372, "name": "baking soda", "quantity": {"amount": 0.5, "unit": "tsp"}},

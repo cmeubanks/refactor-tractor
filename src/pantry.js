@@ -9,7 +9,7 @@ class Pantry {
   }
 
   viewAllIngredients() {
-    return this.contents.map(ingredient => ingredient.name);
+    return this.contents;
   }
 
   findIngredients(recipe) {
@@ -24,20 +24,6 @@ class Pantry {
     let checkIt = currRecipe.filter(ing => pantryIng.includes(ing) ? ing : null);
     return (checkIt.length === currRecipe.length) ? true : false;
   }
-
-  // findWhatWeCanCook(recipeList) {
-  //   recipeList.forEach(recipe => {
-  //     if(this.canWeCook(recipe)) {
-  //       this.CanCookRecipes.push(recipe);
-  //       return;
-  //     } else {
-  //       this.CanNotCookRecipes.push(recipe);
-  //       return;
-  //     }
-  //   })
-  // }
-  // WE MAY WANT TO ADD THIS FUNCTIONALITY IN THE SCRIPTS INSTEAD
-  // IT'S NOT WORKING HERE AND I THINK IT MAY BE BETTER TO DIVVY OUT
 
   cookRecipe(recipe) {
     let currRecipe = this.findIngredients(recipe);
@@ -61,13 +47,12 @@ class Pantry {
     })
   }
 
-  addIngToGroceryList(recipe) {
-    if (!this.groceryList.includes(recipe)) {
-      this.groceryList.push(recipe);
+  addIngToGroceryList(ingredient) {
+    if (!this.groceryList.includes(ingredient)) {
+      this.groceryList.push(ingredient);
     }
   }
 
 }
 
-module.exports = Pantry;
-// export default Pantry;
+export default Pantry;
