@@ -231,11 +231,6 @@ function addRecipeToCookList(event) {
       user.addToCookList(recipe);
       if(pantry.canWeCook(recipe)) {
         console.log("we can cook!")
-        recipe.ingredients.forEach(ingredient => {
-          postData(user.id, ingredient.id, ingredient.quantity.amount)
-        })
-        .then()
-        //.then refetch data so that pantry recipes update
         pantry.cookRecipe(recipe)
       } else {
         console.log("we can NOT cook!")
@@ -250,6 +245,11 @@ function updateUserPantry(event) {
   // if (event.target.classList.contains('.cook-me-btn'){
   //   console.log(event.target.id)
   // }
+  // recipe.ingredients.forEach(ingredient => {
+  //   postData(user.id, ingredient.id, ingredient.quantity.amount)
+  // })
+  // .then()
+  //.then refetch data so that pantry recipes update
 }
 
 function addToGroceryList(event) {
