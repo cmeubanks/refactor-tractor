@@ -38,7 +38,7 @@ favButton.addEventListener('click', viewFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 pantryButton.addEventListener('click', showPantryView);
-tagsContainer.addEventListener('click', grabSelectedTags);
+tagsContainer.addEventListener('click', filterByTags);
 // addRecipeButton.addEventListener('click', );
 
 function onStartup() {
@@ -91,7 +91,11 @@ function grabSelectedTags() {
 }
 
 function filterByTags() {
-
+const selectedTags = grabSelectedTags()
+const searchResults = cookbook.recipes.filter(recipe => {
+    return recipe.tags.some(tag => selectedTags.includes(tag));
+  });
+  domUpdates.populateCards(searchResults, user)
 }
 
 function viewFavorites() {
