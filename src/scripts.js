@@ -80,9 +80,7 @@ function viewFavorites() {
       <header id='${recipe.id}' class='card-header'>
       <label for='add-button' class='hidden'>Click to add recipe</label>
       <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
-      <img id='${recipe.id}' class='add add-recipe-button'
-      src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
-      recipes to cook'></button>
+      </button>
       <label for='favorite-button' class='hidden'>Click to favorite recipe
       </label>
       <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite-active card-button'>
@@ -111,27 +109,6 @@ function favoriteCard(event) {
   }
 }
 
-function addRecipeToCookList(event, user) {
-  console.log("added recipe to list!")
-    let specificRecipe = cookbook.recipes.find(recipe => {
-      if (recipe.id  === Number(event.target.id)) {
-        return recipe;
-      }
-    });
-    user.addToCookList(specificRecipe);
-  }
-
-function addToGroceryList(event) {
-  let specificIngredient = pantry.contents.find(ingredient => {
-    console.log(event.target.id);
-    if (ingredient.ingredient  === Number(event.target.id)) {
-      return ingredient;
-    }
-  });
-  pantry.addIngToGroceryList(specificIngredient);
-  domUpdates.displayGroceryList(user, pantry);
-}
-
 function cardButtonConditionals(event) {
   if (event.target.classList.contains('favorite')) {
     favoriteCard(event);
@@ -141,7 +118,7 @@ function cardButtonConditionals(event) {
     favButton.innerHTML = 'View Favorites';
     pantryButton.innerHTML = 'View Pantry';
     domUpdates.populateCards(cookbook.showAllRecipes(), user);
-  } else if (event.target.classList.contains('add-button')) {
+  } else if (event.target.classList.contains('add-recipe-button')) {
     addRecipeToCookList(event);
   } else if (event.target.classList.contains('add-ing-button')) {
     addToGroceryList(event);
@@ -177,37 +154,42 @@ function viewSearchMatches() {
 // PANTRY FUNCTIONS
 function showPantryView() {
   let pantryIngredients = pantry.viewAllIngredients();
-  togglePantryBoxDisplay(user, pantry);
 
   if (cardArea.classList.contains('home')) {
     cardArea.classList.remove('all');
   }
-  if (!pantry.contents.length) {
-    pantryButton.innerHTML = 'You have an empty pantry!';
-    domUpdates.populateCards(cookbook.recipes);
-    return;
-  } else {
-    getData('ingredients')
-    .then(result => ingredientsArray = result)
-    .then(() => {
-      let ingredientTotal = [];
+  getData('ingredients')
+  .then(result => ingredientsArray = result)
+  .then(() => {
+    let ingredientTotal = [];
 
-      pantryIngredients.forEach(ing => {
-        ingredientsArray.forEach(ingredient => {
-          if(ing.ingredient === ingredient.id) {
-            ingredientTotal.push(ingredient);
-          }
-        })
+    pantryIngredients.forEach(ing => {
+      ingredientsArray.forEach(ingredient => {
+        if(ing.ingredient === ingredient.id) {
+          ingredientTotal.push(ingredient);
+        }
       })
-      domUpdates.displayPantryView(ingredientTotal);
     })
-  }
+    domUpdates.displayPantryView(ingredientTotal);
+    domUpdates.displayRecipesToCook(user);
+  })
 }
 
-function togglePantryBoxDisplay() {
-  if(pantryButton.innerHTML === 'View Pantry') {
-    pantryButton.innerHTML = 'Refresh Pantry';
-  } else if (pantryButton.innerHTML === 'Refresh Pantry') {
-    pantryButton.innerHTML = 'View Pantry';
-  }
+function addRecipeToCookList(event) {
+  let specificRecipe = cookbook.recipes.find(recipe => {
+    if (recipe.id  === Number(event.target.id)) {
+      user.addToCookList(recipe);
+    }
+  });
+}
+
+function addToGroceryList(event) {
+  let specificIngredient = pantry.contents.find(ingredient => {
+    // console.log(event.target.id);
+    if (ingredient.ingredient  === Number(event.target.id)) {
+      return ingredient;
+    }
+  });
+  pantry.addIngToGroceryList(specificIngredient);
+  domUpdates.displayGroceryList(user, pantry);
 }
