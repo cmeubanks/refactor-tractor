@@ -44,7 +44,9 @@ let domUpdates = {
   generateTags(tagsArray) {
     const tagButton = document.querySelector('#radioBtnArea');
     tagsArray.forEach(tag => {
-      tagButton.insertAdjacentHTML('afterbegin', `<input type='checkbox' class="recipe-tag" id='${tag}'
+      tagButton.insertAdjacentHTML('afterbegin',
+      `<input type='checkbox' class='recipe-tag' id='${tag}'
+      aria-checked='false' tabindex='0'>
       <label for='${tag}'>${tag}</label><br>`)
     })
   },
@@ -129,8 +131,7 @@ let domUpdates = {
     if (user.recipesToCook.length) {
       user.recipesToCook.forEach(recipe => {
         canCookList.insertAdjacentHTML('beforebegin',
-        `<li>${recipe.name}</li>
-        <button class="cook-me-btn" class="cookMeBtn">Cook Me</button>
+        `<li>${recipe.name}</li><button class="cook-me-btn" class="cookMeBtn">Cook Me</button>
         `)
       })
     }
