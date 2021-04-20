@@ -24,6 +24,7 @@ let pantryButton = document.querySelector('.view-pantry');
 let addRecipeButton = document.querySelector('.add-button');
 let addIngButton = document.getElementById('add-ing-btn');
 let ingCard = document.querySelector('.ing-card');
+let cookList = document.querySelector('.can-cook-list')
 // let groceryList = document.querySelector('.grocery-list');
 
 window.addEventListener('load', onStartup)
@@ -34,10 +35,7 @@ cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 pantryButton.addEventListener('click', showPantryView);
 tagsContainer.addEventListener('click', filterByTags);
-// addRecipeButton.addEventListener('click', );
-// addIngButton.addEventListener('click', function() {
-//   console.log('YAY!');
-// })
+cookList.addEventListener('click', updateUserPantry);
 
 function onStartup() {
   getData('users')
@@ -226,12 +224,32 @@ function showPantryView() {
   })
 }
 
+
 function addRecipeToCookList(event) {
   let specificRecipe = cookbook.recipes.find(recipe => {
     if (recipe.id  === Number(event.target.id)) {
       user.addToCookList(recipe);
+      if(pantry.canWeCook(recipe)) {
+        console.log("we can cook!")
+        recipe.ingredients.forEach(ingredient => {
+          postData(user.id, ingredient.id, ingredient.quantity.amount)
+        })
+        .then()
+        //.then refetch data so that pantry recipes update
+        pantry.cookRecipe(recipe)
+      } else {
+        console.log("we can NOT cook!")
+        pantry.showStillNeeded(recipe)
+      }
     }
   });
+}
+
+function updateUserPantry(event) {
+  // cookMeBtn = document.querySelectorAll('.cook-me-btn')
+  // if (event.target.classList.contains('.cook-me-btn'){
+  //   console.log(event.target.id)
+  // }
 }
 
 function addToGroceryList(event) {

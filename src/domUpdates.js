@@ -141,7 +141,7 @@ let domUpdates = {
     if (user.recipesToCook.length) {
       user.recipesToCook.forEach(recipe => {
         canCookList.insertAdjacentHTML('beforebegin',
-        `<li>${recipe.name}</li><button class="cook-me-btn" class="cookMeBtn">Cook Me</button>
+        `<li>${recipe.name}<button class="cook-me-btn" id='${recipe.id}'>Cook Me</button></li>
         `)
       })
     }
