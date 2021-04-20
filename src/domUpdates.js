@@ -59,7 +59,7 @@ let domUpdates = {
 
   showRecipeNeeds(recipe, cost) {
     let cardArea = document.querySelector('.all-cards');
-    let recipeIngredients = recipe.recipe.ingredients
+    let recipeIngredients = recipe.getRecipeInstructions()
     cardArea.classList.add('all');
     cardArea.innerHTML = `<h3>${recipe.recipe.name}</h3>
     <p class='all-recipe-info'>
@@ -86,7 +86,6 @@ let domUpdates = {
     // });
     // return ingredientList;
     // });
-     console.log(recipe.getRecipeInstructions())
     let ingredientsSpan = document.querySelector('.ingredients');
 
     let instructionsSpan =
@@ -94,7 +93,7 @@ let domUpdates = {
     recipeIngredients.forEach(ingredient => {
       ingredientsSpan.insertAdjacentHTML('afterbegin', `<ul><li>
       ${ingredient.quantity.amount.toFixed(2)} ${ingredient.quantity.unit}
-      ${ingredient.name}</li></ul>
+      ${ingredient.quantity.name}</li></ul>
       `)
     })
     recipe.recipe.instructions.forEach(instruction => {
