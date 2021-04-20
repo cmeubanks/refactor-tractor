@@ -77,11 +77,17 @@ function loadTags(cookbookRecipes) {
 
 function grabSelectedTags() {
   let selectedTags = []
-  if(event.target.classList.contains('clear-tags')){
+  if(event.target.classList.contains('clear-tags') || event.target.id === "radioBtnArea"){
     return false
   }
-  selectedTags.push(event.target.id)
+  const recipeTags = document.querySelectorAll('.recipe-tag')
+  recipeTags.forEach(tag =>{
+    if(tag.checked && !selectedTags.includes(tag.id)){
+      selectedTags.push(tag.id)
+    }
+  })
   console.log(selectedTags)
+  return selectedTags
 }
 
 function filterByTags() {
