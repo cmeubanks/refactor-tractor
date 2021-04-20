@@ -21,11 +21,26 @@
     // background-color: blue;
     grid-template-columns: repeat(3, 5fr);
   }
+  .user-info{
+    display: none;
+  }
 }
 
 @media screen and (min-width: $mobile-breakpoint) and (max-width: $tablet-breakpoint - 1) {
   .all-cards {
     // background-color: pink;
     grid-template-columns: repeat(1, 5fr);
+  }
+  .user-info{
+    display: none;
+  }
+  .search-bar {
+    width: 50%;
+    position: absolute;
+    right: 9%;
+    top: 5%;
+  }
+  .main-header{
+    flex-direction: column;
   }
 }
