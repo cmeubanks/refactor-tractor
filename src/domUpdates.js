@@ -112,13 +112,13 @@ let domUpdates = {
   },
 
   displayGroceryList(pantry) {
-    let groceryList = document.querySelector('.grocery-list-box');
+    let groceryList = document.querySelector('.grocery-list');
+
+    groceryList.innerText = " ";
 
     if (pantry.groceryList.length) {
       pantry.groceryList.forEach(ingredient => {
-        groceryList.insertAdjacentHTML('beforeend', `<li>
-        ${ingredient.name}</li>
-        `)
+        groceryList.innerHTML += `<li>${ingredient.name}</li>`
       })
     }
   },

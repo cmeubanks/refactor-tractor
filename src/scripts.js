@@ -171,6 +171,7 @@ function cardButtonConditionals(event) {
     addRecipeToCookList(event);
   } else if (event.target.classList.contains('add-ing-button')) {
     addToGroceryList(event);
+    domUpdates.displayGroceryList(pantry);
   }
 }
 
@@ -226,6 +227,7 @@ function showPantryView() {
 
     domUpdates.displayPantryView(ingredientTotal);
     domUpdates.displayRecipesToCook(user);
+    domUpdates.displayGroceryList(pantry);
   })
 }
 
@@ -245,13 +247,8 @@ function addToGroceryList(event) {
   .then(() => {
     let specificIngredient = ingredientsArray.find(ingredient => {
         if (ingredient.id === Number(event.target.id)) {
-          console.log(ingredient);
           pantry.addIngToGroceryList(ingredient);
         }
     })
   })
-  // if(!groceryList.innerHTML = "") {
-  //   groceryList.innerHTML = "";
-  // }
-  domUpdates.displayGroceryList(pantry);
 }
