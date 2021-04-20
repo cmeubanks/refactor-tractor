@@ -8,6 +8,11 @@ let domUpdates = {
       cardArea.classList.remove('all')
     }
 
+    let tagArea = document.querySelector('#filterTagsAside')
+    if(tagArea.classList.contains('hidden')) {
+      tagArea.classList.remove('hidden')
+    }
+
     recipes.forEach(recipe => {
       cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
       class='card'>
@@ -58,6 +63,8 @@ let domUpdates = {
   // }
 
   showRecipeNeeds(recipe, cost) {
+    let tagArea = document.querySelector('#filterTagsAside')
+    tagArea.classList.add('hidden')
     let cardArea = document.querySelector('.all-cards');
     let recipeIngredients = recipe.getRecipeInstructions()
     cardArea.classList.add('all');
