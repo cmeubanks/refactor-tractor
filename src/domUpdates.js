@@ -41,6 +41,19 @@ let domUpdates = {
     } else return
   },
 
+  generateTags(tagsArray) {
+    const tagButton = document.querySelector('#radioBtnArea');
+    tagsArray.forEach(tag => {
+      tagButton.insertAdjacentHTML('afterbegin', `<input type='checkbox' class="recipe-tag" id='${tag}'
+      <label for='${tag}'>${tag}</label><br>`)
+    })
+  },
+
+  // resetTagSelection() {
+  //   const clearTags = document.querySelector('.clear-tags')
+  //   clearTags.add
+  // }
+
   showRecipeNeeds(recipe,recipeCost) {
     let cardArea = document.querySelector('.all-cards');
 
