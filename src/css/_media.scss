@@ -7,11 +7,18 @@
     // background-color: blue;
     grid-template-columns: repeat(5, 5fr);
   }
+
+  .radio-btn-area {
+    grid-template-columns: repeat(5, 5fr);
+  }
 }
 
 @media screen and (min-width: $laptop-breakpoint) and (max-width: $large-breakpoint - 1) {
   .all-cards {
     // background-color: green;
+    grid-template-columns: repeat(4, 5fr);
+  }
+  .radio-btn-area {
     grid-template-columns: repeat(4, 5fr);
   }
 }
@@ -21,8 +28,13 @@
     // background-color: blue;
     grid-template-columns: repeat(3, 5fr);
   }
+
   .user-info{
     display: none;
+  }
+
+  .radio-btn-area {
+    grid-template-columns: repeat(3, 5fr);
   }
 }
 
@@ -31,16 +43,29 @@
     // background-color: pink;
     grid-template-columns: repeat(1, 5fr);
   }
+
   .user-info{
     display: none;
   }
+
   .search-bar {
     width: 50%;
     position: absolute;
     right: 9%;
     top: 5%;
   }
+
   .main-header{
     flex-direction: column;
+  }
+  
+  .search-button,
+  .search-input,
+  .search-image {
+    display: none;
+  }
+
+  .radio-btn-area {
+    grid-template-columns: repeat(2, 5fr);
   }
 }
