@@ -165,6 +165,7 @@ function cardButtonConditionals(event) {
   } else if (event.target.classList.contains('home')) {
     favButton.innerHTML = 'View Favorites';
     pantryButton.innerHTML = 'View Pantry';
+    tagsContainer.classList.remove('hidden');
     domUpdates.populateCards(cookbook.showAllRecipes(), user);
   } else if (event.target.classList.contains('add-recipe-button')) {
     addRecipeToCookList(event);
@@ -202,6 +203,10 @@ function viewSearchMatches() {
 // PANTRY FUNCTIONS
 function showPantryView() {
   let pantryIngredients = pantry.viewAllIngredients();
+
+  if (tagsContainer.classList.contains('filter-tags-aside')) {
+    tagsContainer.classList.add('hidden');
+  }
 
   if (cardArea.classList.contains('home')) {
     cardArea.classList.remove('all');
@@ -245,5 +250,8 @@ function addToGroceryList(event) {
         }
     })
   })
+  // if(!groceryList.innerHTML = "") {
+  //   groceryList.innerHTML = "";
+  // }
   domUpdates.displayGroceryList(pantry);
 }
