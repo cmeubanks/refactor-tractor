@@ -22,7 +22,7 @@ main {
 h1 {
   background: $card-hover-background-color;
   border-right: $border-px-thick;
-  font-size: 255%;
+  font-size: 2em;
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 10px;
@@ -70,14 +70,19 @@ img {
 
 .search-bar {
   display: flex;
-  @include dimensions(100%, 30%);
+  @include dimensions(50%, 30%);
   align-self: center;
   // margin: 10px 0;
+}
+
+.search-image {
+  @include dimensions(7vh, 40%);
 }
 
 .search-button {
   background-color: $card-active-background-color;
   border: $border-px-thin;
+  opacity: 0.8;
   @include dimensions(58px, 20%);
   margin-top: 3px;
 }
@@ -96,13 +101,41 @@ img {
   background-color: $card-active-background-color;
 }
 
+
 .search-input {
   border: $border-px-thin;
-  font-size: 100%;
+  background: $card-active-background-color;
+  color: #FFFFFF;
+  opacity: 0.8;
+  font-size: 1.5em;
   @include dimensions(7vh, 90%);
   margin: 3px 7px 0 0;
   padding-left: 10px;
 }
+
+.radio-btn-area {
+  font-size: 2em;
+  display: grid;
+  grid-template-columns: repeat(10, 5fr);
+  grid-gap: 20px;
+  // @include dimensions(30%, 80%);
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+}
+
+.reset-recipes {
+  display: flex;
+  padding-top: 20px;
+
+  // align-items: center;
+}
+.clear-tags {
+  background: $card-hover-background-color;
+  font-size: 1.5em;
+}
+
+
 
 .add-button {
   // background-color: $main-header-color;
@@ -118,6 +151,7 @@ img {
   display: none;
 }
 
+.clear-tags,
 .home,
 .view-favorites,
 .view-pantry,
@@ -133,6 +167,7 @@ img {
   background-position: center;
   width: 13%;
 }
+
 
 .all-cards {
   // box-sizing: border-box;
@@ -161,7 +196,7 @@ img {
 .all-recipe-info,
 ol {
   color: $main-header-color;
-  font-size: 220%;
+  font-size: 2em;
   width: 100%;
 }
 
@@ -184,7 +219,7 @@ ol {
 }
 
 .add-recipe-button {
-  color: #FFA686;
+  background: $background;
   width: 25%;
 }
 
