@@ -1,10 +1,6 @@
 import './css/base.scss';
 import './css/styles.scss';
 
-// import recipeData from './data/recipes';
-// import ingredientsData from './data/ingredients';
-// import users from './data/users';
-
 import {getData} from './api';
 import domUpdates from './domUpdates';
 import Pantry from './pantry';
@@ -29,20 +25,18 @@ let pantryButton = document.querySelector('.view-pantry');
 let addRecipeButton = document.querySelector('.add-button');
 let addIngButton = document.getElementById('add-ing-btn');
 let ingCard = document.querySelector('.ing-card');
+let cookList = document.querySelector('.can-cook-list')
 // let groceryList = document.querySelector('.grocery-list');
 
 window.addEventListener('load', onStartup)
 
 homeButton.addEventListener('click', cardButtonConditionals);
-favButton.addEventListener('click', viewFavorites);
+favButton.addEventListener('click', runFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 pantryButton.addEventListener('click', showPantryView);
 tagsContainer.addEventListener('click', filterByTags);
-// addRecipeButton.addEventListener('click', );
-// addIngButton.addEventListener('click', function() {
-//   console.log('YAY!');
-// })
+// cookList.addEventListener('click', updateUserPantry);
 
 function onStartup() {
   getData('users')
@@ -90,13 +84,12 @@ function grabSelectedTags() {
   if(event.target.id === "radioBtnArea"){
     return false
   }
-  // const recipeTags = document.querySelectorAll('.recipe-tag')
+
   recipeTags.forEach(tag =>{
     if(tag.checked && !selectedTags.includes(tag.id)){
       selectedTags.push(tag.id)
     }
   })
-  console.log(selectedTags)
   return selectedTags
 }
 
@@ -109,36 +102,6 @@ const searchResults = cookbook.recipes.filter(recipe => {
     return recipe.tags.some(tag => selectedTags.includes(tag));
   });
   domUpdates.populateCards(searchResults, user)
-}
-
-function viewFavorites() {
-  if (cardArea.classList.contains('all')) {
-    cardArea.classList.remove('all')
-  }
-  if (!user.favoriteRecipes.length) {
-    favButton.innerHTML = 'You have no favorites!';
-    domUpdates.populateCards(cookbook.recipes);
-    return
-  } else {
-    favButton.innerHTML = 'Refresh Favorites'
-    cardArea.innerHTML = '';
-    user.favoriteRecipes.forEach(recipe => {
-      cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
-      class='card'>
-      <header id='${recipe.id}' class='card-header'>
-      <label for='add-button' class='hidden'>Click to add recipe</label>
-      <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
-      </button>
-      <label for='favorite-button' class='hidden'>Click to favorite recipe
-      </label>
-      <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite-active card-button'>
-      </button></header>
-      <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
-      <img id='${recipe.id}' tabindex='0' class='card-picture'
-      src='${recipe.image}' alt='Food from recipe'>
-      </div>`)
-    })
-  }
 }
 
 function favoriteCard(event) {
@@ -155,6 +118,11 @@ function favoriteCard(event) {
     event.target.classList.remove('favorite-active');
     user.removeFromFavorites(specificRecipe)
   }
+}
+
+function runFavorites() {
+  let length = user.favoriteRecipes.length
+  domUpdates.viewFavorites(cookbook.recipes, user.favoriteRecipes, length)
 }
 
 function cardButtonConditionals(event) {
@@ -194,7 +162,6 @@ function displayDirections(event) {
 
 function viewSearchMatches() {
   let searchInput = document.querySelector('#search-input')
-  debugger
   let recipesFound = cookbook.findRecipe(searchInput.value)
   domUpdates.populateCards(recipesFound, user);
   event.preventDefault()
@@ -231,12 +198,32 @@ function showPantryView() {
   })
 }
 
+
 function addRecipeToCookList(event) {
   let specificRecipe = cookbook.recipes.find(recipe => {
     if (recipe.id  === Number(event.target.id)) {
       user.addToCookList(recipe);
+      if(pantry.canWeCook(recipe)) {
+        console.log("we can cook!")
+        pantry.cookRecipe(recipe)
+      } else {
+        console.log("we can NOT cook!")
+        pantry.showStillNeeded(recipe)
+      }
     }
   });
+}
+
+function updateUserPantry(event) {
+  // cookMeBtn = document.querySelectorAll('.cook-me-btn')
+  // if (event.target.classList.contains('.cook-me-btn'){
+  //   console.log(event.target.id)
+  // }
+  // recipe.ingredients.forEach(ingredient => {
+  //   postData(user.id, ingredient.id, ingredient.quantity.amount)
+  // })
+  // .then()
+  //.then refetch data so that pantry recipes update
 }
 
 function addToGroceryList(event) {
