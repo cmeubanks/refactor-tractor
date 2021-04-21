@@ -13,7 +13,11 @@
 
 ## Abstract
 
-This Webpack Kit is a refactor of a project that needed updating. 
+A user can search recipies typing in the search bar an clicking the search icon button. The recipes can also be sorted by tag.
+The user can scroll up and down view all of the recipe cards.
+A user can favorite recipies. The view favorites button can then be clicked to sort the favorites.
+
+This Webpack Kit is a refactor of a project that was in need of updating. 
 
 ## Clone This Repo
 
