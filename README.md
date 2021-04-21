@@ -1,7 +1,5 @@
 # Webpack Kit - What's Cookin'
 
-# FitReal
-
 ## Table of Contents
 * [Description](#description)
 * [Installation](#installation)
