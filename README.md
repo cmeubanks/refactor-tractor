@@ -6,7 +6,6 @@
 - (Jim Charnesky)[https://github.com/BigBike96/]
 - (Caroline Eubanks)[https://github.com/cmeubanks]
 
-## Gif
 
 
 ![image](https://user-images.githubusercontent.com/60282216/115487480-03b36200-a216-11eb-8e7d-8b5d858300b1.png)
