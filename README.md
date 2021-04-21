@@ -17,10 +17,12 @@ This Webpack Kit is a refactor of a project that was in need of updating. Users 
 * Search functionality in the navigation bar
 * Favorited recipes display
 * Pantry view to display all ingredients in pantry, all recipes a user would like to cook, and a grocery list that users can add ingredients to.
-
-![Refactor_Tractor_WaveAudit](https://files.slack.com/files-pri/T029P2S9M-F01UY9R98R0/screen_shot_2021-04-20_at_8.03.52_pm.png)
+* * Fully accessible with 100% on the WAVE audit.
 
 ![Refactor_Tractor_Image](https://user-images.githubusercontent.com/60282216/115487480-03b36200-a216-11eb-8e7d-8b5d858300b1.png)
+
+![WAVEAUDIT](https://user-images.githubusercontent.com/76409536/115490626-b33f0300-a21b-11eb-915d-439f862e094c.jpg)
+
 
 ## Installation
 1. Clone this repo via `git clone https://github.com/cmeubanks/refactor-tractor.git`
