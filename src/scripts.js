@@ -8,6 +8,7 @@ import Recipe from './recipe';
 import User from './user';
 import Cookbook from './cookbook';
 
+
 let favButton = document.querySelector('.view-favorites');
 let homeButton = document.querySelector('.home')
 let cardArea = document.querySelector('.all-cards');

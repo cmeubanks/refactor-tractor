@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 
-// does this actually do anything?
+
 html {
   background: $main-background-color;
   border: $border-px-thick;
@@ -22,7 +22,7 @@ main {
 h1 {
   background: $card-hover-background-color;
   border-right: $border-px-thick;
-  font-size: 255%;
+  font-size: 2em;
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 10px;
@@ -32,7 +32,11 @@ h1 {
 
 h3 {
   color: $main-header-color;
-  font-size: 250%;
+  font-size: 2em;
+}
+
+h4 {
+  font-size: 2em;
 }
 
 img {
@@ -70,14 +74,18 @@ img {
 
 .search-bar {
   display: flex;
-  @include dimensions(100%, 30%);
+  @include dimensions(50%, 30%);
   align-self: center;
-  // margin: 10px 0;
+}
+
+.search-image {
+  @include dimensions(5vh, 40%);
 }
 
 .search-button {
   background-color: $card-active-background-color;
   border: $border-px-thin;
+  opacity: 0.8;
   @include dimensions(58px, 20%);
   margin-top: 3px;
 }
@@ -96,19 +104,35 @@ img {
   background-color: $card-active-background-color;
 }
 
+
 .search-input {
   border: $border-px-thin;
-  font-size: 100%;
+  background: $card-active-background-color;
+  color: #FFFFFF;
+  opacity: 0.8;
+  font-size: 1.5em;
   @include dimensions(7vh, 90%);
   margin: 3px 7px 0 0;
   padding-left: 10px;
 }
 
-.add-button {
-  // background-color: $main-header-color;
-  // display: flex;
-  // width: 12%;
+.radio-btn-area {
+  font-size: 2em;
+  display: grid;
+  grid-template-columns: repeat(10, 5fr);
+  grid-gap: 20px;
 }
+
+.reset-recipes {
+  display: flex;
+  padding-top: 20px;
+}
+
+.clear-tags {
+  background: $card-hover-background-color;
+  font-size: 1.5em;
+}
+
 
 .add {
   @include dimensions(auto, 10%);
@@ -118,6 +142,7 @@ img {
   display: none;
 }
 
+.clear-tags,
 .home,
 .view-favorites,
 .view-pantry,
@@ -135,56 +160,38 @@ img {
 }
 
 .all-cards {
-  // box-sizing: border-box;
   margin-top: 30px;
   display: grid;
   grid-gap: 30px;
-  // grid-template-columns: repeat(4, 1fr);
-  // padding: 30px 0 30px 30px;
-  // width: 95.5vw;
-}
-
-
-.all {
-  // grid-gap: 0;
-  // grid-template-columns: repeat(1, 1fr);
 }
 
 .card {
   background: $card-background-color;
   border: 3px solid #000;
   border-radius: $border-radius;
-  // width: 100%;
 }
 
-// is ol doing anything?
 .all-recipe-info,
 ol {
   color: $main-header-color;
-  font-size: 220%;
+  font-size: 2em;
   width: 100%;
 }
 
 .card-header {
   background: $header-background-color;
   border-bottom: $border-px-thin;
-  // display: grid;
-  // grid-template-columns: repeat(2, auto);
-  // grid-template-columns: repeat(2, 1fr);
   display: flex;
   justify-content: space-between;
-
 }
 
 .card-button {
   border: $border-px-thin;
-  // height: 27px;
   margin: 10px;
-  // width: 25%;
 }
 
 .add-recipe-button {
-  color: #FFA686;
+  background: $background;
   width: 25%;
 }
 
