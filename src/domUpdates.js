@@ -56,11 +56,6 @@ let domUpdates = {
     })
   },
 
-  // resetTagSelection() {
-  //   const clearTags = document.querySelector('.clear-tags')
-  //   clearTags.add
-  // }
-
   showRecipeNeeds(recipe, cost) {
     let tagArea = document.querySelector('#filterTagsAside')
     tagArea.classList.add('hidden')
@@ -179,7 +174,6 @@ let domUpdates = {
       })
     }
   }
-
 };
 
 
