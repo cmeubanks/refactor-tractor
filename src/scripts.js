@@ -30,12 +30,12 @@ let cookList = document.querySelector('.can-cook-list')
 window.addEventListener('load', onStartup)
 
 homeButton.addEventListener('click', cardButtonConditionals);
-favButton.addEventListener('click', viewFavorites);
+favButton.addEventListener('click', runFavorites);
 cardArea.addEventListener('click', cardButtonConditionals);
 searchButton.addEventListener('click', viewSearchMatches);
 pantryButton.addEventListener('click', showPantryView);
 tagsContainer.addEventListener('click', filterByTags);
-cookList.addEventListener('click', updateUserPantry);
+// cookList.addEventListener('click', updateUserPantry);
 
 function onStartup() {
   getData('users')
@@ -83,13 +83,12 @@ function grabSelectedTags() {
   if(event.target.id === "radioBtnArea"){
     return false
   }
-  // const recipeTags = document.querySelectorAll('.recipe-tag')
+
   recipeTags.forEach(tag =>{
     if(tag.checked && !selectedTags.includes(tag.id)){
       selectedTags.push(tag.id)
     }
   })
-  console.log(selectedTags)
   return selectedTags
 }
 
@@ -102,36 +101,6 @@ const searchResults = cookbook.recipes.filter(recipe => {
     return recipe.tags.some(tag => selectedTags.includes(tag));
   });
   domUpdates.populateCards(searchResults, user)
-}
-
-function viewFavorites() {
-  if (cardArea.classList.contains('all')) {
-    cardArea.classList.remove('all')
-  }
-  if (!user.favoriteRecipes.length) {
-    favButton.innerHTML = 'You have no favorites!';
-    domUpdates.populateCards(cookbook.recipes);
-    return
-  } else {
-    favButton.innerHTML = 'Refresh Favorites'
-    cardArea.innerHTML = '';
-    user.favoriteRecipes.forEach(recipe => {
-      cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
-      class='card'>
-      <header id='${recipe.id}' class='card-header'>
-      <label for='add-button' class='hidden'>Click to add recipe</label>
-      <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
-      </button>
-      <label for='favorite-button' class='hidden'>Click to favorite recipe
-      </label>
-      <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite-active card-button'>
-      </button></header>
-      <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
-      <img id='${recipe.id}' tabindex='0' class='card-picture'
-      src='${recipe.image}' alt='Food from recipe'>
-      </div>`)
-    })
-  }
 }
 
 function favoriteCard(event) {
@@ -148,6 +117,11 @@ function favoriteCard(event) {
     event.target.classList.remove('favorite-active');
     user.removeFromFavorites(specificRecipe)
   }
+}
+
+function runFavorites() {
+  let length = user.favoriteRecipes.length
+  domUpdates.viewFavorites(cookbook.recipes, user.favoriteRecipes, length)
 }
 
 function cardButtonConditionals(event) {
@@ -187,7 +161,6 @@ function displayDirections(event) {
 
 function viewSearchMatches() {
   let searchInput = document.querySelector('#search-input')
-  debugger
   let recipesFound = cookbook.findRecipe(searchInput.value)
   domUpdates.populateCards(recipesFound, user);
   event.preventDefault()

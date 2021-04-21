@@ -56,11 +56,6 @@ let domUpdates = {
     })
   },
 
-  // resetTagSelection() {
-  //   const clearTags = document.querySelector('.clear-tags')
-  //   clearTags.add
-  // }
-
   showRecipeNeeds(recipe, cost) {
     let tagArea = document.querySelector('#filterTagsAside')
     tagArea.classList.add('hidden')
@@ -91,6 +86,39 @@ let domUpdates = {
       ${instruction.instruction}</li>
       `)
     })
+  },
+
+  viewFavorites(cookbookRecipes, userFavoriteRecipes, recipeLength) {
+    let cardArea = document.querySelector('.all-cards');
+    let favButton = document.querySelector('.view-favorites');
+
+    if (cardArea.classList.contains('all')) {
+      cardArea.classList.remove('all')
+    }
+    if (!recipeLength) {
+      favButton.innerHTML = 'You have no favorites!';
+      this.populateCards(cookbookRecipes);
+      return
+    } else {
+      favButton.innerHTML = 'Refresh Favorites'
+      cardArea.innerHTML = '';
+      userFavoriteRecipes.forEach(recipe => {
+        cardArea.insertAdjacentHTML('afterbegin', `<div id='${recipe.id}'
+        class='card'>
+        <header id='${recipe.id}' class='card-header'>
+        <label for='add-button' class='hidden'>Click to add recipe</label>
+        <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
+        </button>
+        <label for='favorite-button' class='hidden'>Click to favorite recipe
+        </label>
+        <button id='${recipe.id}' aria-label='favorite-button' class='favorite favorite-active card-button'>
+        </button></header>
+        <span id='${recipe.id}' class='recipe-name'>${recipe.name}</span>
+        <img id='${recipe.id}' tabindex='0' class='card-picture'
+        src='${recipe.image}' alt='Food from recipe'>
+        </div>`)
+      })
+    }
   },
 
   displayPantryView(ingredientTotal) {
@@ -146,7 +174,6 @@ let domUpdates = {
       })
     }
   }
-
 };
 
 
