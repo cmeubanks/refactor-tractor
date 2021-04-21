@@ -18,7 +18,9 @@ let domUpdates = {
       class='card'>
           <header id='${recipe.id}' class='card-header'>
             <label for='add-button' class='hidden'>Click to add recipe</label>
-            <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'>
+            <button id='${recipe.id}' aria-label='add-button' class='add-recipe-button card-button'><img id='${recipe.id} favorite' class='add add-recipe-button'
+              src='https://image.flaticon.com/icons/svg/32/32339.svg' alt='Add to
+              recipes to cook'>
             </button>
             <label for='favorite-button' class='hidden'>Click to favorite recipe
             </label>
@@ -49,15 +51,12 @@ let domUpdates = {
   generateTags(tagsArray) {
     const tagButton = document.querySelector('#radioBtnArea');
     tagsArray.forEach(tag => {
-<<<<<<< HEAD
       tagButton.insertAdjacentHTML('afterbegin', `<div><input type='checkbox' class="recipe-tag" id='${tag}'>
       <label for='${tag}'>${tag}</label></div>`)
-=======
       tagButton.insertAdjacentHTML('afterbegin',
-      `<input type='checkbox' class='recipe-tag' id='${tag}'
+      `<div><input type='checkbox' class='recipe-tag' id='${tag}'
       aria-checked='false' tabindex='0'>
-      <label for='${tag}'>${tag}</label><br>`)
->>>>>>> main
+      <label for='${tag}'>${tag}</label></div>`)
     })
   },
 

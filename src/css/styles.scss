@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 
-// does this actually do anything?
+
 html {
   background: $main-background-color;
   border: $border-px-thick;
@@ -32,7 +32,11 @@ h1 {
 
 h3 {
   color: $main-header-color;
-  font-size: 250%;
+  font-size: 2em;
+}
+
+h4 {
+  font-size: 2em;
 }
 
 img {
@@ -72,11 +76,10 @@ img {
   display: flex;
   @include dimensions(50%, 30%);
   align-self: center;
-  // margin: 10px 0;
 }
 
 .search-image {
-  @include dimensions(7vh, 40%);
+  @include dimensions(5vh, 40%);
 }
 
 .search-button {
@@ -118,30 +121,18 @@ img {
   display: grid;
   grid-template-columns: repeat(10, 5fr);
   grid-gap: 20px;
-  // @include dimensions(30%, 80%);
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
 }
 
 .reset-recipes {
   display: flex;
   padding-top: 20px;
-
-  // align-items: center;
 }
+
 .clear-tags {
   background: $card-hover-background-color;
   font-size: 1.5em;
 }
 
-
-
-.add-button {
-  // background-color: $main-header-color;
-  // display: flex;
-  // width: 12%;
-}
 
 .add {
   @include dimensions(auto, 10%);
@@ -168,31 +159,18 @@ img {
   width: 13%;
 }
 
-
 .all-cards {
-  // box-sizing: border-box;
   margin-top: 30px;
   display: grid;
   grid-gap: 30px;
-  // grid-template-columns: repeat(4, 1fr);
-  // padding: 30px 0 30px 30px;
-  // width: 95.5vw;
-}
-
-
-.all {
-  // grid-gap: 0;
-  // grid-template-columns: repeat(1, 1fr);
 }
 
 .card {
   background: $card-background-color;
   border: 3px solid #000;
   border-radius: $border-radius;
-  // width: 100%;
 }
 
-// is ol doing anything?
 .all-recipe-info,
 ol {
   color: $main-header-color;
@@ -203,19 +181,13 @@ ol {
 .card-header {
   background: $header-background-color;
   border-bottom: $border-px-thin;
-  // display: grid;
-  // grid-template-columns: repeat(2, auto);
-  // grid-template-columns: repeat(2, 1fr);
   display: flex;
   justify-content: space-between;
-
 }
 
 .card-button {
   border: $border-px-thin;
-  // height: 27px;
   margin: 10px;
-  // width: 25%;
 }
 
 .add-recipe-button {
